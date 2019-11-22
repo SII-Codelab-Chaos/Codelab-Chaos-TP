@@ -1,4 +1,4 @@
-#« Ça part en prod ! » Testez la résilience de votre appli par le chaos.
+#Ça part en prod ! Testez la résilience de votre appli par le chaos.
 
 ##Introduction
 "Bon, on a développé en interne une super application de gestion des compétences en architecture micro-service, on a fait une super recette fonctionnelle (sur les cas passants, faute de temps.. ça devrait suffire !), on a une couverture de TU au top, on a des super tests d'intégration, … Bref, on est super confiant pour partir en prod !
