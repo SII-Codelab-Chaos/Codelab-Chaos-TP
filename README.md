@@ -1,5 +1,7 @@
 # Ça part en prod ! Testez la résilience de votre appli par le chaos.
 
+> Avant toute chose : [TP0 : Installation de l'environnement et récupération des sources](https://sii-codelab-chaos.github.io/Codelab-Chaos-TP/TP0)
+
 ## Introduction
 "Bon, on a développé en interne une super application de gestion des compétences en architecture micro-service, on a fait une super recette fonctionnelle (sur les cas passants, faute de temps.. ça devrait suffire !), on a une couverture de TU au top, on a des super tests d'intégration, … Bref, on est super confiant pour partir en prod !
 Mais au fait, quelqu’un a regardé si notre application allait tenir la charge ? Si elle était tolérante aux pannes ? Petit doute… Sait-on vraiment si notre application va être résiliente ou pas ?"
