@@ -25,7 +25,7 @@ git clone https://github.com/SII-Codelab-Chaos/fusiion-gestion-competences.git
 ### Lancer les test unitaires
 
 ```shell
-mv clean test
+mvn clean test
 ```
 
 Résultat attendu :
@@ -66,7 +66,7 @@ Dans le `pom.xml` du projet, dans `<build></plugins>`, rajouter les lignes suiva
 ### Tester la couverture de code
 
 ```shell
-mv clean test
+mvn clean test
 ```
 
 JaCoCo publie un rapport dans le dossier `/target/site/jacoco` du projet.
@@ -88,6 +88,11 @@ Dans le `pom.xml` du projet, dans `<build><plugins>`, rajouter les lignes suivan
 
 ### mutationCoverage
 
+Lancer un build de votre application (pour compiler les sources) :
+```shell
+mvn install
+```
+
 Lancer l'outil de mutation :
 
 ```shell
@@ -103,13 +108,16 @@ mvn org.pitest:pitest-maven:mutationCoverage
 ></configuration>
 >```
 
-> En cas de doute sur les `TIMED OUT` :
+> En cas de doute sur les `TIMED OUT` (mais attention, ça peut prendre du temps !) :
 > 
 > Dans le `pom.xml` du projet, dans `<plugin>` :
 > ```xml
 ><configuration>
->    <timeoutConstant>250</timeoutConstant>
+>    <timeoutConstant>50</timeoutConstant>
 ></configuration>
 >```
+
+PitTest publie un rapport dans le dossier `/target/pit-reports/<date-heure>` du projet.
+> Qu'est-ce qui est intéressant dans ce résultat ? :)
 
 ## Conclusion et debriefing
