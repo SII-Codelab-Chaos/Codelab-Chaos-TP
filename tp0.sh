@@ -4,7 +4,7 @@ echo -----------------------------------------------------------
 echo Lancement du script tp0.sh  
 echo -----------------------------------------------------------
 
-git clone https://github.com/SII-Codelab-Chaos/Codelab-Chaos-TP.git
+cd ..
 
 git clone https://github.com/SII-Codelab-Chaos/Gatling-Load-Tests-FuSIIon.git
 
