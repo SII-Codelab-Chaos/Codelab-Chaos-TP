@@ -14,7 +14,7 @@
 
 ```
 
-## Vérification
+## Vérifications
 Trois nouveaux répertoires :
 
 * fusiion-gestion-competences 
