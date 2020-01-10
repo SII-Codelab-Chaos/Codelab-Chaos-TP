@@ -108,7 +108,7 @@ Par chance, vos Speaker vont ont fourni un repository déjà tout prêt, et ont 
 Il se trouve ici : https://github.com/SII-Codelab-Chaos/Gatling-Load-Tests-FuSIIon
 Ce dossier contient un scénario déjà tout prêt, pour le lancer :
 
-    mvn gatling: test
+    mvn gatling:test
     
 Ce scénario va lancer des requêtes sur nos micro services, et nous produire un rapport.
 Une fois le test terminé, vous n'avez plus qu'a suivre le lien et ouvrir le rapport.
