@@ -112,11 +112,4 @@ mvn org.pitest:pitest-maven:mutationCoverage
 ></configuration>
 >```
 
-
-				
-sonar plugin :
-https://github.com/VinodAnandan/sonar-pitest
-
-
 ## Conclusion et debriefing
-
