@@ -4,14 +4,6 @@ echo -----------------------------------------------------------
 echo Lancement du script tp0.sh  
 echo -----------------------------------------------------------
 
-cd ..
-
-git clone https://github.com/SII-Codelab-Chaos/Gatling-Load-Tests-FuSIIon.git
-
-git clone https://github.com/SII-Codelab-Chaos/kubernetes-yaml.git
-
-git clone https://github.com/SII-Codelab-Chaos/fusiion-gestion-competences.git
-
 docker pull fusiion/sii-codelab-chaos-statistiques
 
 docker pull fusiion/sii-codelab-chaos-notification
