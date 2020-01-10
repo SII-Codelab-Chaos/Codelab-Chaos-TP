@@ -7,7 +7,7 @@
 * Docker (pour windows : 'docker for windows')
 * Kubernetes
 
-## Récupérer les sources depuis git
+## Récupérer les images docker (utiles à partir du TP2)
 
 ```shell
 ./tp0.sh
