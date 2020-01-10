@@ -1,4 +1,4 @@
-# TP2
+# TP3
 
 “Le constat est fait : ok, notre applicatif répond.. Mais est vraiment très sensibles aux pannes!” Comment rendre notre application vraiment résiliente ? Comment palier à ce genre de problèmes ?”
 
