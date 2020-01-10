@@ -30,12 +30,6 @@ spec:
         image: fusiion/sii-codelab-chaos-gestion-collaborateurs
         imagePullPolicy: Always
         env:
-          - name: SPRING_PROFILES_ACTIVE
-            value: chaos-monkey
-          - name: CHAOS_MONKEY_ENABLED
-            value: "true"
-          - name: CHAOS_MONKEY_LEVEL
-            value: "250"
           - name: SPRING_DATA_MONGODB_PASSWORD
             valueFrom:
               secretKeyRef:
