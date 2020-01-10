@@ -1,0 +1,46 @@
+version: '2.0'
+services:
+  mongodb:
+    image: bitnami/mongodb:3.6.6
+    ports:
+     - 27017:27017
+    container_name: "mongodb"
+    volumes:
+     - mongodb_data:/bitnami
+    environment:
+     - MONGODB_USER="user"
+     - MONGODB_PASS="password"
+
+##NEO4J
+  neo4j:
+    image: neo4j:3.1
+    ports:
+     - 17474:7474
+     - 17687:7687
+    container_name: "neo4j"
+    volumes:
+     - neo4j_data:/data
+    environment:
+     - NEO4J_AUTH=neo4j/password
+     - NEO4J_dbms_mode=CORE
+     - NEO4J_dbms_connector_http_listen__address=:7474
+     - NEO4J_dbms_connector_https_enabled=false
+     - NEO4J_dbms_connector_bolt_enabled=true
+     
+## RABBITMQ    
+  rabbitmq:
+    image: rabbitmq:management
+    container_name: "rabbitmq"
+    environment:
+     - RABBITMQ_DEFAULT_USER=user
+     - RABBITMQ_DEFAULT_PASS=password
+    ports:
+     - "8088:5672"
+     - "8087:15672"
+    volumes:
+     - rabbitmq_data:/data
+
+volumes:
+  mongodb_data:
+  neo4j_data:
+  rabbitmq_data:
