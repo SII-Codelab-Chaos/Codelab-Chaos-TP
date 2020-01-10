@@ -1,1 +1,4 @@
-theme: jekyll-theme-slate
+title: Codelab - Touraine Tech 2020
+description: Chaos TP
+show_downloads: true
+theme: jekyll-theme-cayman
