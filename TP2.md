@@ -31,6 +31,10 @@ git checkout TP2
 ```shell
 cd TP2-gatling-maven-plugin-demo
 ```
+
+Commençons par lancer nos différents applicatifs en local.
+
+    docker-compose up -d
     
 Cette commande va lancer les bases de données nécessaires à FuSIIon, ainsi que tous ses micro-services
 Pour vérifier cela :
