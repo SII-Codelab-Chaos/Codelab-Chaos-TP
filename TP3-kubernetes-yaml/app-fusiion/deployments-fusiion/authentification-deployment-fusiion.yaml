@@ -1,0 +1,69 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: fusiion-authentification
+  namespace: fusiion
+  labels:
+    app: fusiion
+    name: fusiion-authentification
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fusiion
+      name: fusiion-authentification
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 1
+  revisionHistoryLimit: 2
+  template:
+    metadata:
+      labels:
+        app: fusiion
+        name: fusiion-authentification
+    spec:
+      containers:
+      - name: fusiion-authentification
+        image: fusiion/sii-codelab-chaos-authentification
+        imagePullPolicy: Always
+        env:
+          - name: SPRING_PROFILES_ACTIVE
+            value: chaos-monkey
+          - name: CHAOS_MONKEY_ENABLED
+            value: "true"
+          - name: CHAOS_MONKEY_LEVEL
+            value: "250"
+          - name: SPRING_DATA_MONGODB_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: mongodb-secret
+                key: mongodb-password
+          - name: SPRING_DATA_MONGODB_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: mongodb-secret
+                key: mongodb-username
+          - name: SPRING_RABBITMQ_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: rabbitmq-secret
+                key: rabbitmq-password
+          - name: SPRING_RABBITMQ_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: rabbitmq-secret
+                key: rabbitmq-username
+        args: ["--server.port=8080"
+                ,"--sii.fusiion.url=10.10.192.33/modifiermdp/"
+                ,"--spring.data.mongodb.database=Utilisateurs"
+                ,"--spring.data.mongodb.uri=mongodb://mongo-0.mongo-service:27017/FUSIION_FUSIION-AUTHENTIFICATION"
+                ,"--spring.rabbitmq.host=rabbitmq-0.rabbitmq-service"
+                ,"--spring.rabbitmq.port=5672"
+              ]
+        ports:
+        - containerPort: 8080
+      imagePullSecrets:
+      - name: regcred

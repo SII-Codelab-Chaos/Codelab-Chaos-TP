@@ -1,0 +1,33 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: fusiion-front
+  namespace: fusiion
+  labels:
+    app: fusiion
+    name: fusiion-front
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fusiion
+      name: fusiion-front
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 1
+  revisionHistoryLimit: 2
+  template:
+    metadata:
+      labels:
+        app: fusiion
+        name: fusiion-front
+    spec:
+      containers:
+      - name: fusiion-front
+        image: fusiion/sii-codelab-chaos-front
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
