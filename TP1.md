@@ -82,7 +82,7 @@ Dans le `pom.xml` du projet, dans `<build><plugins>`, rajouter les lignes suivan
 <plugin>
     <groupId>org.pitest</groupId>
     <artifactId>pitest-maven</artifactId>
-    <version>LATEST</version>
+    <version>1.4.10</version>
  </plugin>
 ```
 
