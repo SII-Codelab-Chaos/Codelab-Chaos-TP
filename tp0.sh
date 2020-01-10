@@ -25,3 +25,5 @@ docker pull bitnami/mongodb:3.6.6
 docker pull neo4j:3.1
 
 docker pull rabbitmq:management
+
+docker pull quay.io/kubernetes-ingress-controller/nginx-ingress-controller:0.9.0

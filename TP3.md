@@ -13,6 +13,18 @@ Analyser les résultats de ce tir
 
 Pour réaliser les étapes suivantes, vous avez besoin d'un cluster kubernetes sur votre poste local ( Docker4Windows ou minikube par exemple)
 
+### Basculement vers la branche GIT "TP3"
+
+```shell
+git checkout TP3
+```
+
+### Aller dans le nouveau répertoire "TP3-kubernetes-yaml"
+
+```shell
+cd TP3-kubernetes-yaml
+```
+
 Comme pour le TP précèdent, nous allons devoir relancer FuSIIOn en local.
 Pour cela, on va commencer par arrêter l'application que nous avions lancé avec Docker
 

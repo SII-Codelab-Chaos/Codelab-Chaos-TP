@@ -16,10 +16,16 @@ Comment aurait-on pu éviter d'avoir des TU inutiles ?"
 
 ## Tests unitaires et couverture de code
 
-### Récupérer les sources depuis git
+### Basculement vers la branche GIT "TP1"
 
 ```shell
-git clone https://github.com/SII-Codelab-Chaos/fusiion-gestion-competences.git
+git checkout TP1
+```
+
+### Aller dans le nouveau répertoire "TP1-fusiion-gestion-competences"
+
+```shell
+cd TP1-fusiion-gestion-competences
 ```
 
 ### Lancer les test unitaires

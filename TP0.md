@@ -11,22 +11,16 @@
 
 ```shell
 ./tp0.sh
-
 ```
 
 ## Vérifications
-Trois nouveaux répertoires :
 
-* fusiion-gestion-competences 
-* gatling-maven-plugin-demo
-* kubernetes-yaml
-
-
-Tapez la commande suivante : 
+Taper la commande suivante : 
 ```shell
 docker images
 ```
-Avoir les 11 images docker suivantes :
+
+Avoir les 12 images docker suivantes :
 * fusiion/sii-codelab-chaos-statistiques
 * fusiion/sii-codelab-chaos-notification
 * fusiion/sii-codelab-chaos-gestion-competences
@@ -38,3 +32,4 @@ Avoir les 11 images docker suivantes :
 * rabbitmq
 * bitnami/mongo
 * neo4j
+* quay.io/kubernetes-ingress-controller/nginx-ingress-controller

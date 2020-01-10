@@ -20,7 +20,17 @@ Ces micro-services sont conteneurisés, ce qui va nous faciliter la tâche ici.
 Pour cela, nous vous avons fournis les images docker de ces micro services.
 Commençons par lancer nos différents applicatifs en local.
 
-    docker-compose up -d
+### Basculement vers la branche GIT "TP2"
+
+```shell
+git checkout TP2
+```
+
+### Aller dans le nouveau répertoire "TP2-gatling-maven-plugin-demo"
+
+```shell
+cd TP2-gatling-maven-plugin-demo
+```
     
 Cette commande va lancer les bases de données nécessaires à FuSIIon, ainsi que tous ses micro-services
 Pour vérifier cela :
