@@ -10,6 +10,31 @@
 ## Récupérer les sources depuis git
 
 ```shell
-
+./tp0.sh
 
 ```
+
+## Vérifications
+Trois nouveaux répertoires :
+
+* fusiion-gestion-competences 
+* gatling-maven-plugin-demo
+* kubernetes-yaml
+
+
+Tapez la commande suivante : 
+```shell
+docker images
+```
+Avoir les 11 images docker suivantes :
+* fusiion/sii-codelab-chaos-statistiques
+* fusiion/sii-codelab-chaos-notification
+* fusiion/sii-codelab-chaos-gestion-competences
+* fusiion/sii-codelab-chaos-gestion-collaborateurs
+* fusiion/sii-codelab-chaos-gestion-clients
+* fusiion/sii-codelab-chaos-gaming
+* fusiion/sii-codelab-chaos-authentification
+* fusiion/sii-codelab-chaos-front
+* rabbitmq
+* bitnami/mongo
+* neo4j
