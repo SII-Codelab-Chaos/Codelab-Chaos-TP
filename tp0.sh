@@ -27,3 +27,9 @@ docker pull fusiion/sii-codelab-chaos-gaming
 docker pull fusiion/sii-codelab-chaos-authentification
 
 docker pull fusiion/sii-codelab-chaos-front
+
+docker pull bitnami/mongodb:3.6.6
+
+docker pull neo4j:3.1
+
+docker pull rabbitmq:management
