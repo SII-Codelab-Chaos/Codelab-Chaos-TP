@@ -1,0 +1,18 @@
+# Spring properties
+spring:
+  application:
+     name: fusiion-gestion-competences
+  data:
+    neo4j: 
+      uri: ${SPRING_DATA_NEO4J_URI}
+      username: ${SPRING_DATA_NEO4J_USERNAME}
+      password: ${SPRING_DATA_NEO4J_PASSWORD}
+     
+server:
+  port: 8081
+  
+spring.rabbitmq:
+  host : ${SPRING_RABBITMQ_HOST}
+  port : ${SPRING_RABBITMQ_PORT}
+  username : ${SPRING_RABBITMQ_USERNAME}
+  password : ${SPRING_RABBITMQ_PASSWORD}
