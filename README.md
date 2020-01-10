@@ -10,15 +10,21 @@ Pourtant, les tests unitaires passaient au vert ! Et la couverture de tests est 
 A un mois de la MEP, doit t'on blâmer le stagiaire ou l'auteur des tests unitaires ?
 Comment aurait-on pu éviter d'avoir des TU inutiles ?”
 
+[TP1](https://sii-codelab-chaos.github.io/Codelab-Chaos-TP/TP1)
+
 ## Chapitre 2
 "On a des doutes sur la tolérance aux pannes de notre application, en fait personne n'a jamais regardé !”
 Comment est ce qu'on peut faire un état des lieux de la situation ?"
+
+[TP2](https://sii-codelab-chaos.github.io/Codelab-Chaos-TP/TP2)
 
 
 ## Chapitre 3
 "Le constat est fait : ok, notre applicatif répond.. mais est vraiment très sensibles aux pannes!”
 Comment rendre notre application vraiment résiliente ?
 Comment palier à ce genre de problèmes ?"
+
+[TP3](https://sii-codelab-chaos.github.io/Codelab-Chaos-TP/TP3)
 
 ## Conclusion
 "Nous voilà rassurés, notre application est tolérante aux défaillances techniques, on va pouvoir aller en production beaucoup plus confiant!
