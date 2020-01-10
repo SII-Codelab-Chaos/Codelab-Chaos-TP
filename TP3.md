@@ -1,4 +1,4 @@
-# TP2
+# TP3
 
 “Le constat est fait : ok, notre applicatif répond.. Mais est vraiment très sensibles aux pannes!” Comment rendre notre application vraiment résiliente ? Comment palier à ce genre de problèmes ?”
 
@@ -85,6 +85,7 @@ Pour cela, la commande est toujours :
 
     mvn gatling: test
     
+Nous allons utiliser la branche "kubernetes" de notre projet "gatling", dans laquelle nous avons précisés les nouveau endpoints de nos micro-services.
 Nous allons également suivre l'évolution de nos containers, pour cela vous pouvez utiliser "kubebox.exe" sous windows, ou la commande watch sou linux/mac.
 Nous en reparlerons lors du débriefing, mais intéressez-vous aux redémarrages des pods.
     
