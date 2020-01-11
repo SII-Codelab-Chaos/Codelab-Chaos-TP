@@ -22,7 +22,7 @@ docker pull fusiion/sii-codelab-chaos-front
 
 docker pull bitnami/mongodb:3.6.6
 
-docker pull neo4j:3.1
+docker pull neo4j:3.1.0
 
 docker pull rabbitmq:management
 
