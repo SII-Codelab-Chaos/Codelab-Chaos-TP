@@ -20,16 +20,18 @@ Taper la commande suivante :
 docker images
 ```
 
-Avoir les 12 images docker suivantes :
-* fusiion/sii-codelab-chaos-statistiques
-* fusiion/sii-codelab-chaos-notification
-* fusiion/sii-codelab-chaos-gestion-competences
-* fusiion/sii-codelab-chaos-gestion-collaborateurs
-* fusiion/sii-codelab-chaos-gestion-clients
-* fusiion/sii-codelab-chaos-gaming
-* fusiion/sii-codelab-chaos-authentification
-* fusiion/sii-codelab-chaos-front
-* rabbitmq
-* bitnami/mongo
-* neo4j
-* quay.io/kubernetes-ingress-controller/nginx-ingress-controller
+Avoir les 14 images docker suivantes :
+* fusiion/sii-codelab-chaos-statistiques:latest
+* fusiion/sii-codelab-chaos-notification:latest
+* fusiion/sii-codelab-chaos-gestion-competences:latest
+* fusiion/sii-codelab-chaos-gestion-collaborateurs:latest
+* fusiion/sii-codelab-chaos-gestion-clients:latest
+* fusiion/sii-codelab-chaos-gaming:latest
+* fusiion/sii-codelab-chaos-authentification:latest
+* fusiion/sii-codelab-chaos-front:latest
+* bitnami/mongodb:3.6.6
+* mongo:3.4
+* neo4j:3.1
+* neo4j:3.1.0
+* rabbitmq:management
+* quay.io/kubernetes-ingress-controller/nginx-ingress-controller:0.9.0
