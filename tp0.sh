@@ -4,23 +4,25 @@ echo -----------------------------------------------------------
 echo Lancement du script tp0.sh  
 echo -----------------------------------------------------------
 
-docker pull fusiion/sii-codelab-chaos-statistiques
+docker pull fusiion/sii-codelab-chaos-statistiques:latest
 
-docker pull fusiion/sii-codelab-chaos-notification
+docker pull fusiion/sii-codelab-chaos-notification:latest
 
-docker pull fusiion/sii-codelab-chaos-gestion-competences
+docker pull fusiion/sii-codelab-chaos-gestion-competences:latest
 
-docker pull fusiion/sii-codelab-chaos-gestion-collaborateurs
+docker pull fusiion/sii-codelab-chaos-gestion-collaborateurs:latest
 
-docker pull fusiion/sii-codelab-chaos-gestion-clients
+docker pull fusiion/sii-codelab-chaos-gestion-clients:latest
 
-docker pull fusiion/sii-codelab-chaos-gaming
+docker pull fusiion/sii-codelab-chaos-gaming:latest
 
-docker pull fusiion/sii-codelab-chaos-authentification
+docker pull fusiion/sii-codelab-chaos-authentification:latest
 
-docker pull fusiion/sii-codelab-chaos-front
+docker pull fusiion/sii-codelab-chaos-front:latest
 
 docker pull bitnami/mongodb:3.6.6
+
+docker pull bitnami/mongo:3.4
 
 docker pull neo4j:3.1.0
 
