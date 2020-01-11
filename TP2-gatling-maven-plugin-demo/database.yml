@@ -13,7 +13,7 @@ services:
 
 ##NEO4J
   neo4j:
-    image: neo4j:3.1.0
+    image: neo4j:3.1
     ports:
      - 17474:7474
      - 17687:7687
