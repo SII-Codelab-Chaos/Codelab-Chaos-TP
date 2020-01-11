@@ -1,0 +1,70 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: fusiion-gestion-collaborateurs
+  namespace: fusiion
+  labels:
+    app: fusiion
+    name: fusiion-gestion-collaborateurs
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fusiion
+      name: fusiion-gestion-collaborateurs
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 1
+  revisionHistoryLimit: 2
+  template:
+    metadata:
+      labels:
+        app: fusiion
+        name: fusiion-gestion-collaborateurs
+    spec:
+      containers:
+      - name: fusiion-gestion-collaborateurs
+        image: fusiion/sii-codelab-chaos-gestion-collaborateurs
+        imagePullPolicy: Always
+        env:
+          - name: SPRING_DATA_MONGODB_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: mongodb-secret
+                key: mongodb-password
+          - name: SPRING_DATA_MONGODB_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: mongodb-secret
+                key: mongodb-username
+          - name: SPRING_RABBITMQ_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: rabbitmq-secret
+                key: rabbitmq-password
+          - name: SPRING_RABBITMQ_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: rabbitmq-secret
+                key: rabbitmq-username
+        args: ["--server.port=8080"
+                ,"--spring.data.mongodb.database=Collaborateurs"
+                ,"--spring.data.mongodb.uri=mongodb://mongo-0.mongo-service:27017/FUSIION_FUSIION-GESTION-COLLABORATEURS"
+                ,"--spring.rabbitmq.host=rabbitmq-0.rabbitmq-service"
+                ,"--spring.rabbitmq.port=5672"
+                ]
+        ports:
+        - containerPort: 8080
+        readinessProbe:
+          httpGet:
+            path: /actuator/health
+            port: 8080
+          initialDelaySeconds: 10
+          timeoutSeconds: 2
+          periodSeconds: 5
+          failureThreshold: 1
+      imagePullSecrets:
+      - name: regcred

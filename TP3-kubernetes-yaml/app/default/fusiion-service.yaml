@@ -1,0 +1,110 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: fusiion-gestion-collaborateurs-service
+  namespace: fusiion
+spec:
+  selector:
+    app: fusiion
+    name: fusiion-gestion-collaborateurs
+  ports:
+  - port: 8080
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: fusiion-gestion-competences-service
+  namespace: fusiion
+spec:
+  selector:
+    app: fusiion
+    name: fusiion-gestion-competences
+  ports:
+  - port: 8080
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: fusiion-front-service
+  namespace: fusiion
+spec:
+  selector:
+    app: fusiion
+    name: fusiion-front
+  ports:
+  - port: 8080
+    targetPort: 80
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: fusiion-authentification-service
+  namespace: fusiion
+spec:
+  selector:
+    app: fusiion
+    name: fusiion-authentification
+  ports:
+  - port: 8080
+  
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: fusiion-gaming-service
+  namespace: fusiion
+spec:
+  selector:
+    app: fusiion
+    name: fusiion-gaming
+  ports:
+  - port: 8080
+  
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: fusiion-gestion-clients-service
+  namespace: fusiion
+spec:
+  selector:
+    app: fusiion
+    name: fusiion-gestion-clients
+  ports:
+  - port: 8080
+  
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: fusiion-statistiques-service
+  namespace: fusiion
+spec:
+  selector:
+    app: fusiion
+    name: fusiion-statistiques
+  ports:
+  - port: 8080
+  
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: fusiion-notification-service
+  namespace: fusiion
+spec:
+  selector:
+    app: fusiion
+    name: fusiion-notification
+  ports:
+  - port: 8080
