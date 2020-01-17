@@ -86,23 +86,24 @@ Vérifier que les services ont bien démarrés avec Chaos-monkey dans les logs d
 
 ### Lancer un tir de charge
 
-Se déplacer dans le dossier TP2-docker-gatling
-
-```shell
-cd TP2-docker-gatling
-```
-
 Lancer le tir
 
 ```shell
 mvn gatling:test
 ```
 
+> Note : Ce tir de charge va durer 4 minutes, un tir de charge peut durer plusieurs heures !
+
 Ouvrir le rapport du tir de charge 
 
 ```shell
-    Please open the following file: C:\dev\codelab-chaos\Codelab-Chaos-TP\TP2-docker-gatling\target\gatling\basicsimulation-20200117103958480\index.html
+Please open the following file: C:\dev\codelab-chaos\Codelab-Chaos-TP\TP2-docker-gatling\target\gatling\basicsimulation-numero_de_simulation\index.html
 ```
 
 ## Conclusion et debriefing
 
+> Note : N'oubliez pas de stopper votre application en local à la fin de ce tp
+
+```shell
+docker-compose down
+```

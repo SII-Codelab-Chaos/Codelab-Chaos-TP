@@ -4,43 +4,29 @@
 
 ## Objectifs
 
-Lancer l'application FuSIIon sur un cluster Kubernetes local
-Configurer les properties du chaos-monkey dans les yaml
-Lancer un tir de charge sur l'application FuSIIon
-Analyser les résultats de ce tir
-
-## FuSIIon
+* Lancer l'application FuSIIon sur un cluster Kubernetes local
+* Configurer les properties du chaos-monkey dans les yaml
+* Lancer un tir de charge sur l'application FuSIIon
+* Analyser les résultats de ce tir
 
 Pour réaliser les étapes suivantes, vous avez besoin d'un cluster kubernetes sur votre poste local ( Docker4Windows ou minikube par exemple)
 
-### Basculement vers la branche GIT "TP3"
 
-```shell
-git checkout TP3
-```
+## FuSIIon
 
-### Aller dans le nouveau répertoire "TP3-kubernetes-yaml"
+### Lancer FuSIIon en local
+
+Aller dans le répertoire "TP3-kubernetes-yaml"
 
 ```shell
 cd TP3-kubernetes-yaml
 ```
 
-Comme pour le TP précèdent, nous allons devoir relancer FuSIIOn en local.
-Pour cela, on va commencer par arrêter l'application que nous avions lancé avec Docker
+Lancer nos différents applicatifs  et nos bases de données en local.
 
-    docker-compose down
-    
-Ensuite, nous allons nous intéresser aux fichiers yaml présents dans le repository https://github.com/SII-Codelab-Chaos/kubernetes-yaml
-Ces fichiers contiennent tous ce qu'il faut pour démarrer FuSIIon sur un cluster kubernetes en local.
-Le but de ce TP n'étant pas de maitriser Kubernetes, mais d'apporter une solution de résilience, nous avons fait deux scripts: run.sh et delete.sh.
-Ces scripts "masquent" la complexité de kubernetes, et permettent de démarrer et d'éteindre le cluster sans connaitre kubectl.
-N'hésitez pas à faire sans si vous connaissez un peu cet outil, mais nous ne passerons pas plus de temps que ça dessus.
+```shell
+./run.sh
 
-Nous allons donc lancer FuSIIon sur le cluster local à l'aide de la commande suivante :
-
-    ./run.sh
- 
-    $ ./run.sh
     -----------------------------------------------------------
     Lancement du script run.sh
     -----------------------------------------------------------
@@ -64,17 +50,18 @@ Nous allons donc lancer FuSIIon sur le cluster local à l'aide de la commande su
     neo4j-core-0                                      0/1     ContainerCreating   0          1s
     nginx-ingress-574f74c78-hkh5v                     0/1     ContainerCreating   0          1s
     rabbitmq-0                                        0/1     ContainerCreating   0          1s
+```
 
+> Note : Il est tout à fait possible de demarer FuSIIon avec kubectl si vous connaissez cet outil. Néanmoins, ça n'est pas l'objet de ce tp, les scripts run.sh et delete.sh sont la pour vous faire gagner du temps !
 
-Victoire, nous avons déployé notre applicatif !
  
  ## Chaos-Monkey for Springboot
  
-Ensuite, comme précédemment, nous allons configurer nos services pour lancer des assaults avec chaos-monkey.
-Ce sont les mêmes images Docker que dans le TP2, le fonctionnement est donc similaire.
-Nous allons donc rajouter des variables d'environnement à nos services.
-Pour cela, nous allons éditer les fichiers Yaml "deployment" :
+ ### Redémarrer l'application sur un cluster kubernetes local avec des chaos-monkey activés sur nos différents micro-services 
 
+Configurer les variables d'environnement dans les fichiers de déploiement kubernetes pour chaque service : Compétences, Collaborateur, Authentification et Clients
+
+```shell
     codelab-chaos\kubernetes-yaml\app-fusiion\deployments-fusiion\authentification-deployment-fusiion.yaml
         env:
           - name: SPRING_PROFILES_ACTIVE
@@ -83,28 +70,64 @@ Pour cela, nous allons éditer les fichiers Yaml "deployment" :
             value: "true"
           - name: CHAOS_MONKEY_LEVEL
             value: "250"
-          
-Nous avons donc nos chaos-monkey actifs sur nos services.
-Il nous suffit donc de redémarrer nos applicatifs:
+          - name: CHAOS_MONKEY_KILL_APPLICATION_ACTIVE
+            value: "true"            
+```          
 
+Relancer l'application avec les nouvelles propriétés
+
+```shell
     ./delete.sh
     ./run.sh
-        
+```
+
 ## Gatling
 
-Nous allons relancer le même tir que précédemment, afin de pouvoir comparer les résultats.
-Pour cela, la commande est toujours :
+### Lancer un tir de charge
 
-    mvn gatling: test
-    
-Nous allons utiliser la branche "kubernetes" de notre projet "gatling", dans laquelle nous avons précisés les nouveau endpoints de nos micro-services.
-Nous allons également suivre l'évolution de nos containers, pour cela vous pouvez utiliser "kubebox.exe" sous windows, ou la commande watch sou linux/mac.
-Nous en reparlerons lors du débriefing, mais intéressez-vous aux redémarrages des pods.
-    
-Même chose que précédemment, une fois le test terminé vous n'avez plus qu'a suivre le lien et ouvrir le rapport.
+Lancer le tir
+
+```shell
+mvn gatling:test
+```
+
+Ouvrir le rapport du tir de charge 
+
+```shell
+Please open the following file: C:\dev\codelab-chaos\Codelab-Chaos-TP\TP3-kubernetes\target\gatling\basicsimulation-numero_de_simulation\index.html
+```
+
+## Bonus
+
+Si vous êtes un peu en avance et que votre pc le permet, lancer FuSIIon avec 2 ou 3 instances de chaque services
+
+## Mofifier les yaml Kubernetes
+
+Configurer le nombre de replica de chaque service dans les fichiers de déploiement Kubernetes de chaque service
+```shell
+    codelab-chaos\kubernetes-yaml\app-fusiion\deployments-fusiion\authentification-deployment-fusiion.yaml
+    spec:
+      replicas: 2   
+```       
+
+> Note : Il peut être interessant d'identifier les services "critiques", et de leurs allouer plus de ressources. Dans notre cas, le service authentification est un "Single Point of Failure". N'hésitez pas à lui allouer un replica supplémentaire.
+
+Relancer un tir de charge
+
+```shell
+mvn gatling:test
+```
+
+Ouvrir le nouveau rapport 
+
+```shell
+Please open the following file: C:\dev\codelab-chaos\Codelab-Chaos-TP\TP3-kubernetes\target\gatling\basicsimulation-numero_de_simulation\index.html
+```
 
 ## Conclusion et debriefing
 
-Bon et bien ça a l'air de tenir la charge ce coup-ci !
-Rendez vous avec vos Speaker et les autres participants pour débriefer.
+> Note : N'oubliez pas de stopper votre application en local à la fin de ce tp
 
+```shell
+./delete.sh
+```
