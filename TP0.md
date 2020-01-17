@@ -7,7 +7,15 @@
 * Docker (pour windows : 'docker for windows')
 * Kubernetes
 
-## Récupérer les images docker (utiles à partir du TP2)
+> Pour toute la durée du CodeLab, placez-vous dans un dossier de travail (idéalement à l'abri de votre antivirus). Idéalement, le repository Maven est également à l'abri de votre antivirus
+
+## Récupérer les sources des TP
+
+```shell
+git clone https://github.com/SII-Codelab-Chaos/Codelab-Chaos-TP.git
+```
+
+## Récupérer les images docker (utiles à partir du TP2) et les dépendances Maven des TP 1 et 2
 
 ```shell
 ./tp0.sh
@@ -15,12 +23,14 @@
 
 ## Vérifications
 
-Taper la commande suivante : 
+Taper la commande suivante :
+
 ```shell
 docker images
 ```
 
 Avoir les 14 images docker suivantes :
+
 * fusiion/sii-codelab-chaos-statistiques:latest
 * fusiion/sii-codelab-chaos-notification:latest
 * fusiion/sii-codelab-chaos-gestion-competences:latest
