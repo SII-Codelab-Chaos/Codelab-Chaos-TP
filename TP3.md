@@ -88,6 +88,7 @@ Relancer l'application avec les nouvelles propriétés
 Lancer le tir
 
 ```shell
+cd gatling
 mvn gatling:test
 ```
 
