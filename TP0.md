@@ -17,8 +17,16 @@ git clone https://github.com/SII-Codelab-Chaos/Codelab-Chaos-TP.git
 
 ## Récupérer les images docker (utiles à partir du TP2) et les dépendances Maven des TP 1 et 2
 
+Sur Linux ou émulateur type Git Bash :
+
 ```shell
 ./tp0.sh
+```
+
+Sur Windows :
+
+```shell
+./tp0.bat
 ```
 
 ## Vérifications
@@ -29,7 +37,7 @@ Taper la commande suivante :
 docker images
 ```
 
-Avoir les 14 images docker suivantes :
+Vérifier la présence des 14 images docker suivantes :
 
 * fusiion/sii-codelab-chaos-statistiques:latest
 * fusiion/sii-codelab-chaos-notification:latest

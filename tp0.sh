@@ -32,26 +32,34 @@ docker pull rabbitmq:management
 
 docker pull quay.io/kubernetes-ingress-controller/nginx-ingress-controller:0.9.0
 
+echo -----------------------------------------------------------
 echo Toutes les images docker ont été récupérées : OK
+echo -----------------------------------------------------------
 
 cd TP1-fusiion-gestion-competences/
 
 mvn install
 
+echo -----------------------------------------------------------
 echo Install maven TP1 terminé : OK
+echo -----------------------------------------------------------
 
 cd ../TP2-docker-gatling/
 
 mvn install
 
+echo -----------------------------------------------------------
 echo Install maven TP2 terminé : OK
+echo -----------------------------------------------------------
 
-cd ../TP3-kubernetes-yaml/
+cd ../TP3-kubernetes-yaml/gatling
 
 mvn install
 
-echo Install maven TP3 terminé : OK
+cd ../..
 
+echo -----------------------------------------------------------
+echo Install maven TP3 terminé : OK
 echo -----------------------------------------------------------
 echo Fin du script tp0.sh
 echo -----------------------------------------------------------
