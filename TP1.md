@@ -16,13 +16,7 @@ Comment aurait-on pu éviter d'avoir des TU inutiles ?"
 
 ## Tests unitaires et couverture de code
 
-### Basculement vers la branche GIT "TP1"
-
-```shell
-git checkout TP1
-```
-
-### Aller dans le nouveau répertoire "TP1-fusiion-gestion-competences"
+### Aller dans le répertoire "TP1-fusiion-gestion-competences"
 
 ```shell
 cd TP1-fusiion-gestion-competences
