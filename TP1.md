@@ -146,7 +146,7 @@ Ajoutez la configuration suivante dans le `pom.xml` du projet, dans `<plugin>` (
 <dependency>
     <groupId>eu.stamp-project</groupId>
     <artifactId>descartes</artifactId>
-    <version>1.2.5</version>
+    <version>1.2.6</version>
 </dependency>
 </dependencies>
 ```
