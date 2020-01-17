@@ -123,7 +123,7 @@ Dans le `pom.xml` du projet, dans `<plugin>` (org.pitest) :
 </targetTests>
 ```
 
-### Encore un peu de temps devant vous ?
+### Encore un peu de temps devant vous ? Cassez du mutant !
 
 * Explorez les résultats du rapport d'analyse de PIT
 * Localisez un mutant qui a survécu et détruisez-le !
@@ -131,8 +131,6 @@ Dans le `pom.xml` du projet, dans `<plugin>` (org.pitest) :
   * Relancez votre TU pour s'assurer qu'il soit OK
   * Relancez une analyse de PIT
   * Constatez que le mutant est bien tué et que vous avez amélioré la situation
-
-> Utilisez la commande suivante pour accélérer
 
 ### Encore du temps devant vous ? Testez l'EXTREME MUTATION !
 
