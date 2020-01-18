@@ -123,16 +123,7 @@ Dans le `pom.xml` du projet, dans `<plugin>` (org.pitest) :
 </targetTests>
 ```
 
-### Encore un peu de temps devant vous ? Cassez du mutant !
-
-* Explorez les résultats du rapport d'analyse de PIT
-* Localisez un mutant qui a survécu et détruisez-le !
-  * Corrigez le TU correspondant (ou créez en un nouveau)
-  * Relancez votre TU pour s'assurer qu'il soit OK
-  * Relancez une analyse de PIT
-  * Constatez que le mutant est bien tué et que vous avez amélioré la situation
-
-### Encore du temps devant vous ? Testez l'EXTREME MUTATION !
+### Encore un peu de temps devant vous ? Testez l'EXTREME MUTATION !
 
 > Avec l'Extreme Mutation, plutôt que de générer une multitude de mutants pour chaque opérateur et condition, c'est toute la logique d'une méthode couverte par un test qui est supprimée. Tout le code de la méthode est remplacé par un simple retour (null, vide, ou void). Avec cette approche, un plus petit nombre de mutants est généré, ce qui simplifie grandement l'analyse des résultats de PIT dans un premier temps (par exemple quand vous testerez la première fois le mutation testing sur vos propres projets !)
 
@@ -157,5 +148,14 @@ Lancez la commande suivante :
 mvn clean package
 mvn org.pitest:pitest-maven:mutationCoverage -DmutationEngine=descartes
 ```
+
+### Encore du temps devant vous ? Cassez du mutant !
+
+* Explorez les résultats du rapport d'analyse de PIT
+* Localisez un mutant qui a survécu et détruisez-le !
+  * Corrigez le TU correspondant (ou créez en un nouveau)
+  * Relancez votre TU pour s'assurer qu'il soit OK
+  * Relancez une analyse de PIT
+  * Constatez que le mutant est bien tué et que vous avez amélioré la situation
 
 ## Conclusion et debriefing
