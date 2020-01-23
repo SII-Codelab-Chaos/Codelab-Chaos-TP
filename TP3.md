@@ -95,14 +95,14 @@ mvn gatling:test
 Ouvrir le rapport du tir de charge 
 
 ```shell
-Please open the following file: C:\dev\codelab-chaos\Codelab-Chaos-TP\TP3-kubernetes\target\gatling\basicsimulation-numero_de_simulation\index.html
+Please open the following file: ..\Codelab-Chaos-TP\TP3-kubernetes\target\gatling\basicsimulation-numero_de_simulation\index.html
 ```
 
 ## Bonus
 
-Si vous êtes un peu en avance et que votre pc le permet, lancer FuSIIon avec 2 ou 3 instances de chaque services
+Si vous êtes un peu en avance et que votre pc le permet, lancer FuSIIon avec 2 ou 3 instances de chaque services (ou à minima l'authentification).
 
-## Mofifier les yaml Kubernetes
+## Modifier les yaml Kubernetes
 
 Configurer le nombre de replica de chaque service dans les fichiers de déploiement Kubernetes de chaque service
 ```shell
@@ -122,7 +122,7 @@ mvn gatling:test
 Ouvrir le nouveau rapport 
 
 ```shell
-Please open the following file: C:\dev\codelab-chaos\Codelab-Chaos-TP\TP3-kubernetes\target\gatling\basicsimulation-numero_de_simulation\index.html
+Please open the following file: ...\Codelab-Chaos-TP\TP3-kubernetes\target\gatling\basicsimulation-numero_de_simulation\index.html
 ```
 
 ## Conclusion et debriefing
