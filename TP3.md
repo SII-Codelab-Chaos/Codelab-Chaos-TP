@@ -55,9 +55,9 @@ Lancer nos différents applicatifs  et nos bases de données en local.
 > Note : Il est tout à fait possible de demarer FuSIIon avec kubectl si vous connaissez cet outil. Néanmoins, ça n'est pas l'objet de ce tp, les scripts run.sh et delete.sh sont la pour vous faire gagner du temps !
 
  
- ## Chaos-Monkey for Springboot
+## Chaos-Monkey for Springboot
  
- ### Redémarrer l'application sur un cluster kubernetes local avec des chaos-monkey activés sur nos différents micro-services 
+### Redémarrer l'application sur un cluster kubernetes local avec des chaos-monkey activés sur nos différents micro-services 
 
 Configurer les variables d'environnement dans les fichiers de déploiement kubernetes pour chaque service : Compétences, Collaborateur, Authentification et Clients
 
