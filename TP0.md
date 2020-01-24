@@ -37,7 +37,7 @@ Taper la commande suivante :
 docker images
 ```
 
-Vérifier la présence des 14 images docker suivantes :
+Vérifier la présence des 10 images docker suivantes :
 
 * fusiion/sii-codelab-chaos-gestion-competences:latest
 * fusiion/sii-codelab-chaos-gestion-collaborateurs:latest
