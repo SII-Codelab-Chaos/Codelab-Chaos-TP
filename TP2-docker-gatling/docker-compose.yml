@@ -49,27 +49,6 @@ services:
      - rabbitmq
     networks:
      - collaborateur
-     
-  statistiques:
-    image: fusiion/sii-codelab-chaos-statistiques
-    container_name: "fusiion-statistiques"
-    environment:
-     - SPRING_DATA_MONGODB_DATABASE=Statistiques
-     - SPRING_DATA_MONGODB_URI=mongodb://mongodb:27017/FUSIION_FUSIION-STATISTIQUES
-     - SPRING_DATA_MONGODB_USERNAME=user
-     - SPRING_DATA_MONGODB_PASSWORD=password
-     - SPRING_RABBITMQ_HOST=rabbitmq
-     - SPRING_RABBITMQ_PORT=5672
-     - SPRING_RABBITMQ_USERNAME=user
-     - SPRING_RABBITMQ_PASSWORD=password
-    ports:
-     - "8082:8082"
-    depends_on:
-     - mongodb
-     - authentification
-     - rabbitmq
-    networks:
-     - statistiques
 
   authentification:
     image: fusiion/sii-codelab-chaos-authentification:latest
@@ -91,27 +70,6 @@ services:
      - rabbitmq
     networks:
      - authentification
-     
-  gaming:
-    image: fusiion/sii-codelab-chaos-gaming
-    container_name: "fusiion-gaming"
-    environment:
-        - SPRING_DATA_MONGODB_DATABASE=Gaming
-        - SPRING_DATA_MONGODB_USERNAME=user
-        - SPRING_DATA_MONGODB_PASSWORD=password
-        - SPRING_DATA_MONGODB_URI=mongodb://mongodb:27017/FUSIION_FUSIION-GAMING
-        - SPRING_RABBITMQ_HOST=rabbitmq
-        - SPRING_RABBITMQ_PORT=5672
-        - SPRING_RABBITMQ_USERNAME=user
-        - SPRING_RABBITMQ_PASSWORD=password
-    ports:
-        - "8086:8086"
-    depends_on:
-        - mongodb
-        - authentification
-        - rabbitmq
-    networks:
-        - gaming
 
   clients:
     image: fusiion/sii-codelab-chaos-gestion-clients
@@ -132,27 +90,6 @@ services:
         - rabbitmq
     networks:
         - clients
-        
-  notification:
-    image: fusiion/sii-codelab-chaos-notification
-    container_name: "fusiion-notification"
-    environment:
-     - SPRING_DATA_MONGODB_DATABASE=Notifications
-     - SPRING_DATA_MONGODB_URI=mongodb://mongodb:27017/FUSIION_FUSIION-NOTIFICATION
-     - SPRING_DATA_MONGODB_USERNAME=user
-     - SPRING_DATA_MONGODB_PASSWORD=password
-     - SPRING_RABBITMQ_HOST=rabbitmq
-     - SPRING_RABBITMQ_PORT=5672
-     - SPRING_RABBITMQ_USERNAME=user
-     - SPRING_RABBITMQ_PASSWORD=password
-    ports:
-     - "8090:8090"
-    depends_on:
-     - mongodb
-     - authentification
-     - rabbitmq
-    networks:
-     - collaborateur
 
   mongodb:
     extends:

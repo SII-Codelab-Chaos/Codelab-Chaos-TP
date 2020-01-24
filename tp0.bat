@@ -6,7 +6,7 @@ echo -----------------------------------------------------------
 
 cd TP1-fusiion-gestion-competences/
 
-call mvn install
+call mvn install -DskipTests
 
 echo -----------------------------------------------------------
 echo Install maven TP1 terminé : OK
@@ -14,17 +14,11 @@ echo -----------------------------------------------------------
 
 cd ..
 
-docker pull fusiion/sii-codelab-chaos-statistiques:latest
-
-docker pull fusiion/sii-codelab-chaos-notification:latest
-
 docker pull fusiion/sii-codelab-chaos-gestion-competences:latest
 
 docker pull fusiion/sii-codelab-chaos-gestion-collaborateurs:latest
 
 docker pull fusiion/sii-codelab-chaos-gestion-clients:latest
-
-docker pull fusiion/sii-codelab-chaos-gaming:latest
 
 docker pull fusiion/sii-codelab-chaos-authentification:latest
 
@@ -48,7 +42,7 @@ echo -----------------------------------------------------------
 
 cd TP2-docker-gatling/
 
-call mvn install
+call mvn install -DskipTests
 
 echo -----------------------------------------------------------
 echo Install maven TP2 terminé : OK
@@ -56,7 +50,7 @@ echo -----------------------------------------------------------
 
 cd ../TP3-kubernetes-yaml/gatling/
 
-call mvn install
+call mvn install -DskipTests
 
 cd ../..
 

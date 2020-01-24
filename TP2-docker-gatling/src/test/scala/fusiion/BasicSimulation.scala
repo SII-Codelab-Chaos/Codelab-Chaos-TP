@@ -43,7 +43,7 @@ class BasicSimulation extends Simulation {
 
   setUp(
     scn.inject(
-      rampUsers(400) during (240 seconds))).protocols(httpProtocol)
+      rampUsers(300) during (180 seconds))).protocols(httpProtocol)
     .assertions(
       global.successfulRequests.percent.gt(80),
       forAll.failedRequests.percent.lt(5)
