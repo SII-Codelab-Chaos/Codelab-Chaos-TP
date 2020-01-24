@@ -98,7 +98,7 @@ Lancer le tir
 
 ```shell
 cd gatling
-mvn gatling:test
+mvn -Dgatling.compilerJvmArgs="-Xmx256m" gatling:test
 ```
 
 Ouvrir le rapport du tir de charge 
