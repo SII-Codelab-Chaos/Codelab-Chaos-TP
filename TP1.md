@@ -88,7 +88,7 @@ Dans le `pom.xml` du projet, dans `<build><plugins>`, rajouter les lignes suivan
  </plugin>
 ```
 
-> 🐵 La propriété timeoutConstant définie à 1000 permet d'éviter que les nombreuses boucles infnies créées par PIT ne viennent trop ralentir l'analyse.
+> 🐵 La propriété timeoutConstant définie à 1000 permet d'éviter que les nombreuses boucles infinies créées par PIT ne viennent trop ralentir l'analyse.
 
 > 🐵 **Recommandé :** Vous pouvez modifier la configuration de PIT pour accélérer l'analyse.  
 Par exemple en augmentant le nombre de threads utilisés par l'analyse.  

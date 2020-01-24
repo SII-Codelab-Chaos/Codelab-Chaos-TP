@@ -51,11 +51,11 @@ Lancer nos différents applicatifs  et nos bases de données en local.
     rabbitmq-0                                        0/1     ContainerCreating   0          1s
 ```
 
-> 🐵 Il est tout à fait possible de demarer FuSIIon avec kubectl si vous connaissez cet outil. Néanmoins, ça n'est pas l'objet de ce tp, les scripts run.sh et delete.sh sont la pour vous faire gagner du temps !
+> 🐵 Il est tout à fait possible de démarrer FuSIIon avec kubectl si vous connaissez cet outil. Néanmoins, ça n'est pas l'objet de ce tp, les scripts run.sh et delete.sh sont la pour vous faire gagner du temps !
 
 ## Chaos-Monkey for Springboot
 
-### Redémarrer l'application sur un cluster kubernetes local avec des chaos-monkey activés sur nos différents micro-services 
+### Redémarrer l'application sur un cluster kubernetes local avec des chaos-monkey activés sur nos différents micro-services
 
 Configurer les variables d'environnement dans les fichiers de déploiement kubernetes pour chaque service : Compétences, Collaborateur, Authentification et Clients
 
@@ -85,6 +85,7 @@ Nous vous conseillons fortement d'utiliser l'outil kubebox fourni directement da
 
 Lancer kubebok (attention : celui-ci ne fonctionne pas sous git Bash, préférez PowerShell ou Cmder).
 Exemple sous windows :
+
 ```shell
     ./kubebox-windows.exe
 ```
@@ -113,13 +114,14 @@ Si vous êtes un peu en avance et que votre pc le permet, lancer FuSIIon avec 2 
 ## Modifier les yaml Kubernetes
 
 Configurer le nombre de replica de chaque service dans les fichiers de déploiement Kubernetes de chaque service
+
 ```shell
     codelab-chaos\kubernetes-yaml\app-fusiion\deployments-fusiion\authentification-deployment-fusiion.yaml
     spec:
       replicas: 3
 ```
 
-> 🐵  Il peut être interessant d'identifier les services "critiques", et de leurs allouer plus de ressources. Dans notre cas, le service authentification est un "Single Point of Failure". N'hésitez pas à lui allouer un replica supplémentaire.
+> 🐵  Il peut être intéressant d'identifier les services "critiques", et de leurs allouer plus de ressources. Dans notre cas, le service authentification est un "Single Point of Failure". N'hésitez pas à lui allouer un replica supplémentaire.
 
 Relancer un tir de charge (à la racine du répertoire TP3-kubernetes-yaml/gatling/) :
 
