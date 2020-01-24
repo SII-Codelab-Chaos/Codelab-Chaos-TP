@@ -39,14 +39,10 @@ docker images
 
 Vérifier la présence des 14 images docker suivantes :
 
-* fusiion/sii-codelab-chaos-statistiques:latest
-* fusiion/sii-codelab-chaos-notification:latest
 * fusiion/sii-codelab-chaos-gestion-competences:latest
 * fusiion/sii-codelab-chaos-gestion-collaborateurs:latest
 * fusiion/sii-codelab-chaos-gestion-clients:latest
-* fusiion/sii-codelab-chaos-gaming:latest
 * fusiion/sii-codelab-chaos-authentification:latest
-* fusiion/sii-codelab-chaos-front:latest
 * bitnami/mongodb:3.6.6
 * mongo:3.4
 * neo4j:3.1
