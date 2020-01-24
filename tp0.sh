@@ -4,6 +4,16 @@ echo -----------------------------------------------------------
 echo Lancement du script tp0.sh  
 echo -----------------------------------------------------------
 
+cd TP1-fusiion-gestion-competences/
+
+mvn install
+
+echo -----------------------------------------------------------
+echo Install maven TP1 terminé : OK
+echo -----------------------------------------------------------
+
+cd ..
+
 docker pull fusiion/sii-codelab-chaos-statistiques:latest
 
 docker pull fusiion/sii-codelab-chaos-notification:latest
@@ -36,15 +46,7 @@ echo -----------------------------------------------------------
 echo Toutes les images docker ont été récupérées : OK
 echo -----------------------------------------------------------
 
-cd TP1-fusiion-gestion-competences/
-
-mvn install
-
-echo -----------------------------------------------------------
-echo Install maven TP1 terminé : OK
-echo -----------------------------------------------------------
-
-cd ../TP2-docker-gatling/
+cd TP2-docker-gatling/
 
 mvn install
 
