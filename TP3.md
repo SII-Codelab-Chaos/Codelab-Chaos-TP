@@ -55,7 +55,7 @@ Lancer nos différents applicatifs  et nos bases de données en local.
 
 ## Chaos-Monkey for Springboot
 
-### Redémarrer l'application sur un cluster kubernetes local avec des chaos-monkey activés sur nos différents micro-services
+### Redémarrer l'application sur un cluster kubernetes local avec des chaos-monkey activés sur nos différents micro-services 
 
 Configurer les variables d'environnement dans les fichiers de déploiement kubernetes pour chaque service : Compétences, Collaborateur, Authentification et Clients
 
@@ -97,7 +97,7 @@ Lancer le tir
 
 ```shell
 cd gatling
-mvn gatling:test
+mvn -Dgatling.compilerJvmArgs="-Xmx256m" gatling:test
 ```
 
 Ouvrir le rapport du tir de charge

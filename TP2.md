@@ -91,7 +91,7 @@ Vérifier que les services ont bien démarrés avec Chaos-monkey dans les logs d
 Lancer le tir
 
 ```shell
-mvn gatling:test
+mvn -Dgatling.compilerJvmArgs="-Xmx256m" gatling:test
 ```
 
 > **Note :** Ce tir de charge va durer 4 minutes, un tir de charge peut durer plusieurs heures !
