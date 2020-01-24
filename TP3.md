@@ -11,7 +11,6 @@
 
 Pour réaliser les étapes suivantes, vous avez besoin d'un cluster kubernetes sur votre poste local ( Docker4Windows ou minikube par exemple)
 
-
 ## FuSIIon
 
 ### Lancer FuSIIon en local
@@ -52,12 +51,11 @@ Lancer nos différents applicatifs  et nos bases de données en local.
     rabbitmq-0                                        0/1     ContainerCreating   0          1s
 ```
 
-> Note : Il est tout à fait possible de demarer FuSIIon avec kubectl si vous connaissez cet outil. Néanmoins, ça n'est pas l'objet de ce tp, les scripts run.sh et delete.sh sont la pour vous faire gagner du temps !
+> 🐵 Il est tout à fait possible de demarer FuSIIon avec kubectl si vous connaissez cet outil. Néanmoins, ça n'est pas l'objet de ce tp, les scripts run.sh et delete.sh sont la pour vous faire gagner du temps !
 
- 
- ## Chaos-Monkey for Springboot
- 
- ### Redémarrer l'application sur un cluster kubernetes local avec des chaos-monkey activés sur nos différents micro-services 
+## Chaos-Monkey for Springboot
+
+### Redémarrer l'application sur un cluster kubernetes local avec des chaos-monkey activés sur nos différents micro-services
 
 Configurer les variables d'environnement dans les fichiers de déploiement kubernetes pour chaque service : Compétences, Collaborateur, Authentification et Clients
 
@@ -71,8 +69,8 @@ Configurer les variables d'environnement dans les fichiers de déploiement kuber
           - name: CHAOS_MONKEY_LEVEL
             value: "250"
           - name: CHAOS_MONKEY_KILL_APPLICATION_ACTIVE
-            value: "true"          
-```          
+            value: "true"
+```
 
 Relancer l'application avec les nouvelles propriétés
 
@@ -80,6 +78,7 @@ Relancer l'application avec les nouvelles propriétés
     ./delete.sh
     ./run.sh
 ```
+
 ## Kubebox
 
 Nous vous conseillons fortement d'utiliser l'outil kubebox fourni directement dans ce répertoire. Celui-ci permet de visualiser et de superviser l'état des différents pods.
@@ -101,7 +100,7 @@ cd gatling
 mvn gatling:test
 ```
 
-Ouvrir le rapport du tir de charge 
+Ouvrir le rapport du tir de charge
 
 ```shell
 Please open the following file: ..\Codelab-Chaos-TP\TP3-kubernetes\target\gatling\basicsimulation-numero_de_simulation\index.html
@@ -118,9 +117,9 @@ Configurer le nombre de replica de chaque service dans les fichiers de déploiem
     codelab-chaos\kubernetes-yaml\app-fusiion\deployments-fusiion\authentification-deployment-fusiion.yaml
     spec:
       replicas: 3
-```       
+```
 
-> Note : Il peut être interessant d'identifier les services "critiques", et de leurs allouer plus de ressources. Dans notre cas, le service authentification est un "Single Point of Failure". N'hésitez pas à lui allouer un replica supplémentaire.
+> 🐵  Il peut être interessant d'identifier les services "critiques", et de leurs allouer plus de ressources. Dans notre cas, le service authentification est un "Single Point of Failure". N'hésitez pas à lui allouer un replica supplémentaire.
 
 Relancer un tir de charge (à la racine du répertoire TP3-kubernetes-yaml/gatling/) :
 
@@ -128,7 +127,7 @@ Relancer un tir de charge (à la racine du répertoire TP3-kubernetes-yaml/gatli
 mvn gatling:test
 ```
 
-Ouvrir le nouveau rapport 
+Ouvrir le nouveau rapport
 
 ```shell
 Please open the following file: ...\Codelab-Chaos-TP\TP3-kubernetes\target\gatling\basicsimulation-numero_de_simulation\index.html
@@ -136,7 +135,7 @@ Please open the following file: ...\Codelab-Chaos-TP\TP3-kubernetes\target\gatli
 
 ## Conclusion et debriefing
 
-> Note : N'oubliez pas de stopper votre application en local à la fin de ce tp
+> 🐵 N'oubliez pas de stopper votre application en local à la fin de ce tp
 
 ```shell
 ./delete.sh

@@ -94,7 +94,7 @@ Lancer le tir
 mvn gatling:test
 ```
 
-> Note : Ce tir de charge va durer 4 minutes, un tir de charge peut durer plusieurs heures !
+> **Note :** Ce tir de charge va durer 4 minutes, un tir de charge peut durer plusieurs heures !
 
 Ouvrir le rapport du tir de charge 
 
@@ -104,7 +104,7 @@ Please open the following file: ..\Codelab-Chaos-TP\TP2-docker-gatling\target\ga
 
 ## Conclusion et debriefing
 
-> Note : N'oubliez pas de stopper votre application en local à la fin de ce tp
+> 🐵 N'oubliez pas de stopper votre application en local à la fin de ce tp
 
 ```shell
 docker-compose down
