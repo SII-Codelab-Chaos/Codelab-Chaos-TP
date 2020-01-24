@@ -18,7 +18,7 @@ Comment est ce qu'on peut faire un état des lieux de la situation ?"
 Aller dans le répertoire "TP2-gatling-maven-plugin-demo"
 
 ```shell
-cd TP2-gatling-maven-plugin-demo
+cd TP2-docker-gatling
 ```
 
 Lancer nos différents applicatifs  et nos bases de données en local.
@@ -48,7 +48,7 @@ docker container ps
  
 ### Redémarrer l'application avec des chaos-monkey activés sur nos différents micro-services 
  
-Configurer les variables d'environnement dans le fichier docker-compose.yaml pour chaque service : Compétences, Collaborateur, Authentification et Clients
+Configurer les variables d'environnement dans le fichier docker-compose.yml pour chaque service : Compétences, Collaborateur, Authentification et Clients
 
 ```properties
     SPRING_PROFILES_ACTIVE=chaos-monkey
@@ -67,7 +67,7 @@ Vérifier que les services ont bien démarrés avec Chaos-monkey dans les logs d
 ```shell
     docker container ps
 
-    docker logs {{id du container}}
+    docker logs idDuContainer
 
     2020-01-03 14:25:20.895  INFO 1 --- [           main] d.c.s.b.c.monkey.component.ChaosMonkey   : 
          _____ _                       __  __             _
