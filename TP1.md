@@ -85,8 +85,9 @@ Dans le `pom.xml` du projet, dans `<build><plugins>`, rajouter les lignes suivan
  </plugin>
 ```
 
-Vous pouvez rajouter modifier la configuration de PIT pour accélérer l'analyse.  
-Une valeur comprise entre 1 et le nombre de CPUs de votre machine est recommandé.  
+Vous pouvez modifier la configuration de PIT pour accélérer l'analyse.  
+Une valeur comprise entre 1 et le nombre de CPUs de votre machine est recommandé.
+{: .alert .alert-info}
 Dans le `pom.xml` du projet, dans `<plugin>` (org.pitest) :
 ```xml
 <configuration>
