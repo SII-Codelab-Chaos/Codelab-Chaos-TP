@@ -8,6 +8,7 @@ Comment aurait-on pu éviter d'avoir des TU inutiles ?"
 ## Objectifs
 
 * Mutation testing : théorie et pratique
+* Couverture de code
 * PIT :
   * installation et utilisation de l’outil
   * analyse
@@ -68,7 +69,7 @@ mvn test
 JaCoCo publie un rapport dans le dossier `/target/site/jacoco` du projet.
 > Nous nous intéresserons notamment aux résultats de la classe `CompetenceService`  
 
-> Note : la colonne "Missed Branches" de ce rapport désigne les embranchements possibles du fait de la présence des structures if / switch . En effet, s'il est intéressant de connaitre la couverture de code en pourcentage de lignes ou d'instructions couvertes, il est tout aussi important de vérifier qu'un maximum d'"embranchements" sont pas couverts par les TU.
+> Note : la colonne "Missed Branches" de ce rapport désigne les embranchements possibles du fait de la présence des structures if / switch . En effet, s'il est intéressant de connaitre la couverture de code en pourcentage de lignes ou d'instructions couvertes, il est tout aussi important de vérifier qu'un maximum d'"embranchements" sont correctement couverts par les TU.
 
 ## Mutation testing
 
