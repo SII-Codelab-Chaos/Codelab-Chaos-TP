@@ -14,17 +14,11 @@ echo -----------------------------------------------------------
 
 cd ..
 
-docker pull fusiion/sii-codelab-chaos-statistiques:latest
-
-docker pull fusiion/sii-codelab-chaos-notification:latest
-
 docker pull fusiion/sii-codelab-chaos-gestion-competences:latest
 
 docker pull fusiion/sii-codelab-chaos-gestion-collaborateurs:latest
 
 docker pull fusiion/sii-codelab-chaos-gestion-clients:latest
-
-docker pull fusiion/sii-codelab-chaos-gaming:latest
 
 docker pull fusiion/sii-codelab-chaos-authentification:latest
 
