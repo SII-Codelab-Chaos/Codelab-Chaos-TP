@@ -115,7 +115,7 @@ Configurer le nombre de replica de chaque service dans les fichiers de déploiem
 ```shell
     codelab-chaos\kubernetes-yaml\app-fusiion\deployments-fusiion\authentification-deployment-fusiion.yaml
     spec:
-      replicas: 3
+      replicas: 2
 ```
 
 > 🐵  Il peut être intéressant d'identifier les services "critiques", et de leurs allouer plus de ressources. Dans notre cas, le service authentification est un "Single Point of Failure". N'hésitez pas à lui allouer un replica supplémentaire.
