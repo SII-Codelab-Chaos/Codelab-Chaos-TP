@@ -6,7 +6,7 @@ echo -----------------------------------------------------------
 
 cd TP1-fusiion-gestion-competences/
 
-call mvn install
+call mvn install -DskipTests
 
 echo -----------------------------------------------------------
 echo Install maven TP1 terminé : OK
@@ -48,7 +48,7 @@ echo -----------------------------------------------------------
 
 cd TP2-docker-gatling/
 
-call mvn install
+call mvn install -DskipTests
 
 echo -----------------------------------------------------------
 echo Install maven TP2 terminé : OK
@@ -56,7 +56,7 @@ echo -----------------------------------------------------------
 
 cd ../TP3-kubernetes-yaml/gatling/
 
-call mvn install
+call mvn install -DskipTests
 
 cd ../..
 
