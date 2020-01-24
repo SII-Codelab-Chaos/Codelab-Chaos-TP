@@ -71,7 +71,7 @@ Configurer les variables d'environnement dans les fichiers de déploiement kuber
           - name: CHAOS_MONKEY_LEVEL
             value: "250"
           - name: CHAOS_MONKEY_KILL_APPLICATION_ACTIVE
-            value: "true"            
+            value: "true"          
 ```          
 
 Relancer l'application avec les nouvelles propriétés
@@ -79,6 +79,15 @@ Relancer l'application avec les nouvelles propriétés
 ```shell
     ./delete.sh
     ./run.sh
+```
+## Kubebox
+
+Nous vous conseillons fortement d'utiliser l'outil kubebox fourni directement dans ce répertoire. Celui-ci permet de visualiser et de superviser l'état des différents pods.
+
+Lancer kubebok (attention : celui-ci ne fonctionne pas sous git Bash, préférez PowerShell ou Cmder).
+Exemple sous windows :
+```shell
+    ./kubebox-windows.exe
 ```
 
 ## Gatling
@@ -108,12 +117,12 @@ Configurer le nombre de replica de chaque service dans les fichiers de déploiem
 ```shell
     codelab-chaos\kubernetes-yaml\app-fusiion\deployments-fusiion\authentification-deployment-fusiion.yaml
     spec:
-      replicas: 2   
+      replicas: 3
 ```       
 
 > Note : Il peut être interessant d'identifier les services "critiques", et de leurs allouer plus de ressources. Dans notre cas, le service authentification est un "Single Point of Failure". N'hésitez pas à lui allouer un replica supplémentaire.
 
-Relancer un tir de charge
+Relancer un tir de charge (à la racine du répertoire TP3-kubernetes-yaml/gatling/) :
 
 ```shell
 mvn gatling:test

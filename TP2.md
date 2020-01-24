@@ -15,10 +15,10 @@ Comment est ce qu'on peut faire un état des lieux de la situation ?"
 
 ### Lancer FuSIIon en local
 
-Aller dans le répertoire "TP2-gatling-maven-plugin-demo"
+Aller dans le répertoire "TP2-docker-gatling"
 
 ```shell
-cd TP2-gatling-maven-plugin-demo
+cd TP2-docker-gatling
 ```
 
 Lancer nos différents applicatifs  et nos bases de données en local.
@@ -51,14 +51,16 @@ docker container ps
 Configurer les variables d'environnement dans le fichier docker-compose.yaml pour chaque service : Compétences, Collaborateur, Authentification et Clients
 
 ```properties
-    SPRING_PROFILES_ACTIVE=chaos-monkey
-    CHAOS_MONKEY_ENABLED=true
-    CHAOS_MONKEY_LEVEL=250
-    CHAOS_MONKEY_KILL_APPLICATION_ACTIVE=true
+    environment:
+        - SPRING_PROFILES_ACTIVE=chaos-monkey
+        - CHAOS_MONKEY_ENABLED=true
+        - CHAOS_MONKEY_LEVEL=250
+        - CHAOS_MONKEY_KILL_APPLICATION_ACTIVE=true
 ```
 
 Relancer l'application avec les nouvelles propriétés
 ```shell
+docker-compose down
 docker-compose up -d
 ```
 
@@ -97,7 +99,7 @@ mvn gatling:test
 Ouvrir le rapport du tir de charge 
 
 ```shell
-Please open the following file: C:\dev\codelab-chaos\Codelab-Chaos-TP\TP2-docker-gatling\target\gatling\basicsimulation-numero_de_simulation\index.html
+Please open the following file: ..\Codelab-Chaos-TP\TP2-docker-gatling\target\gatling\basicsimulation-numero_de_simulation\index.html
 ```
 
 ## Conclusion et debriefing
