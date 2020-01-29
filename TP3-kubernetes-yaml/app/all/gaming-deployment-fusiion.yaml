@@ -28,7 +28,7 @@ spec:
       containers:
       - name: fusiion-gaming
         image: fusiion/sii-codelab-chaos-gaming
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
         env:
           - name: SPRING_DATA_MONGODB_PASSWORD
             valueFrom:

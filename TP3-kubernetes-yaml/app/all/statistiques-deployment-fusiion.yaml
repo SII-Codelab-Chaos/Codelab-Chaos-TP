@@ -28,7 +28,7 @@ spec:
       containers:
       - name: fusiion-statistiques
         image: fusiion/sii-codelab-chaos-statistiques
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
         env:
           - name: SPRING_DATA_MONGODB_PASSWORD
             valueFrom:

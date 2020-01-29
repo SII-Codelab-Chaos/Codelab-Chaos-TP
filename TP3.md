@@ -118,12 +118,19 @@ Configurer le nombre de replica de chaque service dans les fichiers de déploiem
       replicas: 2
 ```
 
+Relancer l'application avec les nouvelles propriétés
+
+```shell
+    ./delete.sh
+    ./run.sh
+```
+
 > 🐵  Il peut être intéressant d'identifier les services "critiques", et de leurs allouer plus de ressources. Dans notre cas, le service authentification est un "Single Point of Failure". N'hésitez pas à lui allouer un replica supplémentaire.
 
 Relancer un tir de charge (à la racine du répertoire TP3-kubernetes-yaml/gatling/) :
 
 ```shell
-mvn gatling:test
+mvn -Dgatling.compilerJvmArgs="-Xmx256m" gatling:test
 ```
 
 Ouvrir le nouveau rapport

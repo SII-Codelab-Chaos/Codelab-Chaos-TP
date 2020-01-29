@@ -2,11 +2,8 @@ version: '2'
 networks:
   competence:
   collaborateur:
-  statistiques:
   authentification:
-  gaming:
   clients:
-  notification:
 
 services:
   competences:
@@ -97,10 +94,7 @@ services:
       service: mongodb
     networks:
      - authentification
-     - gaming
      - collaborateur
-     - statistiques
-     - notification
 
   neo4j:
     extends:
@@ -116,12 +110,9 @@ services:
       service: rabbitmq
     networks:
         - competence
-        - gaming
         - authentification
         - collaborateur
         - clients
-        - statistiques
-        - notification
      
 volumes:
   mongodb_data:
