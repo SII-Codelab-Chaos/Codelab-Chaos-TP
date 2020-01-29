@@ -41,13 +41,6 @@ spec:
       containers:
       - image: quay.io/kubernetes-ingress-controller/nginx-ingress-controller:0.9.0
         name: nginx-ingress
-        resources:
-             limits:
-               memory: 768Mi
-               cpu: 1
-             requests:
-               memory: 256Mi
-               cpu: 0.5
         args:
             - /nginx-ingress-controller
             - --default-backend-service=$(POD_NAMESPACE)/fusiion-front-service
