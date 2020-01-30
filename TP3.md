@@ -31,7 +31,6 @@ Lancement du script run.sh
 3/6 - create secrets Done
 4/6 - create statefulsets Done
 5/6 - create default Done
-
 6/6 - deployments Done
 ALL DONE
 Context "docker-desktop" modified.
@@ -57,7 +56,7 @@ fusiion-gestion-competences-6b6df9dc4-6mjwg       0/1     Pending             0 
 Configurer les variables d'environnement dans les fichiers de déploiement kubernetes pour chaque service : Compétences, Collaborateur, Authentification et Clients
 
 ```shell
-    codelab-chaos\kubernetes-yaml\app-fusiion\deployments-fusiion\authentification-deployment-fusiion.yaml
+    codelab-chaos\TP3-kubernetes-yaml\deployments-fusiion\authentification-deployment-fusiion.yaml
         env:
           - name: SPRING_PROFILES_ACTIVE
             value: chaos-monkey
@@ -101,7 +100,7 @@ mvn -Dgatling.compilerJvmArgs="-Xmx256m" gatling:test
 Ouvrir le rapport du tir de charge
 
 ```shell
-Please open the following file: ..\Codelab-Chaos-TP\TP3-kubernetes\target\gatling\basicsimulation-numero_de_simulation\index.html
+Please open the following file: ..\Codelab-Chaos-TP\TP3-kubernetes-yaml\gatling\target\gatling\basicsimulation-numero_de_simulation\index.html
 ```
 
 ## Bonus
@@ -113,7 +112,7 @@ Si vous êtes un peu en avance et que votre pc le permet, lancer FuSIIon avec 2 
 Configurer le nombre de replica de chaque service dans les fichiers de déploiement Kubernetes de chaque service
 
 ```shell
-    codelab-chaos\kubernetes-yaml\app-fusiion\deployments-fusiion\authentification-deployment-fusiion.yaml
+    codelab-chaos\TP3-kubernetes-yaml\deployments-fusiion\authentification-deployment-fusiion.yaml
     spec:
       replicas: 2
 ```
