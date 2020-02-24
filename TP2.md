@@ -7,9 +7,9 @@ Comment est ce qu'on peut faire un état des lieux de la situation ?"
 
 * Lancer l'application FuSIIon via docker
 * Lancer un tir de charge de reference
-* Configurer les propriétés du chaos-monkey en mode latence
+* Configurer les propriétés du chaos-monkey en mode latency
 * Lancer un second tir de charge sur l'application FuSIIon
-* Configurer les propriétés du chaos-monkey en mode latence
+* Configurer les propriétés du chaos-monkey en mode killing
 * Lancer un troisième tir de charge sur l'application FuSIIon
 * Analyser les résultats de ces tirs
 
