@@ -50,9 +50,11 @@ docker container ps
 
 ### Création du tir de charge
 
-Configurer le tir de charge dans le fichier Codelab-Chaos-TP/TP2-docker-gatling/src/test/scala/fusiion/BasicSimulation.scala
+#### Configurer le tir de charge dans le fichier : 
 
-Définition du protocole de communication
+Codelab-Chaos-TP/TP2-docker-gatling/src/test/scala/fusiion/BasicSimulation.scala
+
+#### Définition du protocole de communication
 
 ```shell
   val httpProtocol = http
@@ -64,7 +66,9 @@ Définition du protocole de communication
     .userAgentHeader("Mozilla/5.0 (Windows NT 5.1; rv:31.0) Gecko/20100101 Firefox/31.0")
 ```
 
-Définition du scénario
+#### Définition du scénario fonctionnel
+
+Appel du service d'authentification avec récupération du token JWT
 
 ```shell
  val scn = scenario("BasicSimulation")
@@ -73,30 +77,51 @@ Définition du scénario
       .body(StringBody("{\"username\" : \"pgaultier\", \"password\" : \"password\"}"))
       .check(header("Authorization").saveAs("token"))
     ).pause(2)
+```
+
+Appel du service "Collaborateur" pour récuperer la liste des collaborateurs
+
+```shell
     .exec(http("Collaborateur/pgaultier")
-    .get(":8083/collaborateurs/pgaultier@sii.fr")
-    .header("Authorization", "${token}")
-    .check(status.is(session => 200))
-  ).pause(2)
+        .get(":8083/collaborateurs/pgaultier@sii.fr")
+        .header("Authorization", "${token}")
+        .check(status.is(session => 200))
+    ).pause(2)
+```
+
+Appel du service "Competence" pour récuperer la liste de toutes les competences
+
+```shell
   .exec(http("Competence/all")
     .get(":8081/competences")
     .header("Authorization", "${token}")
     .check(status.is(session => 200))
   ).pause(2)
+```
+
+Appel du service "Competence" pour récuperer la liste des competences d'un collaborateur
+
+```shell
   .exec(http("Competence/pgaultier")
     .get(":8081/competences/collaborateur/pgaultier@sii.fr")
     .header("Authorization", "${token}")
     .check(status.is(session => 200))
   ).pause(2)
+```
+
+Appel du service "Client" pour récuperer la liste de tous les clients
+
+```shell
+
   .exec(http("Clients/all")
     .get(":8084/clients")
     .header("Authorization", "${token}")
     .check(status.is(session => 200))
   )
-
 ```
 
-Définition du set-up du tir
+
+#### Définition du set-up du tir
 
 ```shell
   setUp(
