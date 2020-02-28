@@ -58,7 +58,7 @@ Codelab-Chaos-TP/TP2-docker-gatling/src/test/scala/fusiion/BasicSimulation.scala
 
 ```shell
   val scn = scenario("BasicSimulation")
-    .exec(http("authentication") // Nom de l'appel dans le rapport gatling
+    .exec(http("authentication") // Nom de l appel dans le rapport gatling
       .post("/gestionAuthentification/login") // appel HTTP POST sur la ressource REST /gestionAuthentification/login
       .body(StringBody("{\"username\" : \"pgaultier\", \"password\" : \"password\"}")) // body du POST avec user/password
       .check(header("Authorization").saveAs("token")) // stockage du token JWT dans une variable token
@@ -95,7 +95,7 @@ Pour cela, utiliser ce [SWAGGER](https://sii-codelab-chaos.github.io/Codelab-Cha
 Feature: FuSIIon cas nominal
 Scenario: Connection a FuSIIon puis parcours sur l'application'
 
-Given Soit un utilisateur de FuSIIon avec un username "pgaultier@sii.fr" et un password "password
+Given Soit un utilisateur de FuSIIon
 And un username "pgaultier@sii.fr"
 And un password "password
 When l'utilisateur se connecte via la mire d'authentification de FuSIIon avec ses identifiants
@@ -134,7 +134,7 @@ FuSIIon est à destination des collaborateurs de SII Atlantique, soit environ 30
 
 Pour que ce tir soit validant, nous avons besoin que 80% des requetes soit en succès et moins de 5% d'erreur sur le service d'authentification.
 
-Vous pouvez rajouter d'autres assertions, par exemple sur le temps de reponses, ou le nombre de requetes par secondes : https://gatling.io/docs/current/general/assertions
+Vous pouvez rajouter d'autres assertions, par exemple sur le temps de reponses, ou le nombre de requetes par secondes : [https://gatling.io/docs/current/general/assertions](https://gatling.io/docs/current/general/assertions)
 
 ```shell
   setUp(
