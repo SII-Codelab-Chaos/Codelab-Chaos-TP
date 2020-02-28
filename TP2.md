@@ -56,18 +56,19 @@ Codelab-Chaos-TP/TP2-docker-gatling/src/test/scala/fusiion/BasicSimulation.scala
 
 #### Définition du protocole de communication
 
+
 ```shell
   val scn = scenario("BasicSimulation")
     .exec(http("authentication") // Nom de l appel dans le rapport gatling
       .post("/gestionAuthentification/login") // appel HTTP POST sur la ressource REST /gestionAuthentification/login
       .body(StringBody("{\"username\" : \"pgaultier\", \"password\" : \"password\"}")) // body du POST avec user/password
       .check(header("Authorization").saveAs("token")) // stockage du token JWT dans une variable token
-    ).pause(2) // pause de 2 seconde pour simuler un vrai utilisateur
+    ).pause(2)
 ```
 
 #### Définition du scénario fonctionnel
 
-Appel du service d'authentification avec récupération du token JWT
+Ajouter le début du scénario avec un premier appel au service d'authentification
 
 ```shell
  val scn = scenario("BasicSimulation")
@@ -78,7 +79,7 @@ Appel du service d'authentification avec récupération du token JWT
     ).pause(2)
 ```
 
-Appel du service "Collaborateur" pour récuperer la liste des collaborateurs
+Ajouter un deuxième appel au scénario en récuperant la liste des collaborateurs
 
 ```shell
     .exec(http("Collaborateur/pgaultier")
@@ -129,14 +130,14 @@ Then il récupere une liste de clients
 
 #### Définition du set-up du tir
 
-Pour ce TP2, nous allons faire des tirs de charge de 3 minutes, soit 180 secondes.
-FuSIIon est à destination des collaborateurs de SII Atlantique, soit environ 300 personnes.
-
-Pour que ce tir soit validant, nous avons besoin que 80% des requetes soit en succès et moins de 5% d'erreur sur le service d'authentification.
-
-Vous pouvez rajouter d'autres assertions, par exemple sur le temps de reponses, ou le nombre de requetes par secondes : [https://gatling.io/docs/current/general/assertions](https://gatling.io/docs/current/general/assertions)
+Completer le setup du tir à l'aide des informations suivantes :
 
 ```shell
+# Pour ce TP2, nous allons faire des tirs de charge de 3 minutes, soit 180 secondes.
+# FuSIIon est à destination des collaborateurs de SII Atlantique, soit environ 300 personnes.
+# Pour que ce tir soit validant, nous avons besoin que 80% des requetes soit en succès et moins de 5% d'erreur sur le service d'authentification.
+# Vous pouvez rajouter d'autres assertions, par exemple sur le temps de reponses, ou le nombre de requetes par secondes : [https://gatling.io/docs/current/general/assertions](https://gatling.io/docs/current/general/assertions)
+
   setUp(
     scn.inject(
       rampUsers({{nb_User}}) during ({{nb_Seconde}} seconds))).protocols(httpProtocol)
