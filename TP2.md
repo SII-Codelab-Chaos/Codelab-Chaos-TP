@@ -89,7 +89,7 @@ Appel du service "Collaborateur" pour récuperer la liste des collaborateurs
 ```
 
 Completer la fin du scénario fonctionnel du tir de charge à l'aide de la feature suivante qui décrit le comportement attendu.
-Pour cela, utiliser ce [SWAGGER](https://sii-codelab-chaos.github.io/Codelab-Chaos-TP/openapi.yaml) qui décrit les endpoints REST de FuSIIon.
+Pour cela, utiliser ce [SWAGGER](https://sii-codelab-chaos.github.io/fusiion-swagger/) qui décrit les endpoints REST de FuSIIon.
 
 ```gherkin
 Feature: FuSIIon cas nominal
