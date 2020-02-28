@@ -90,6 +90,7 @@ Ajouter un deuxième appel au scénario en récuperant la liste des collaborateu
 ```
 
 Completer la fin du scénario fonctionnel du tir de charge à l'aide de la feature suivante qui décrit le comportement attendu.
+
 Pour cela, utiliser ce [SWAGGER](https://sii-codelab-chaos.github.io/fusiion-swagger/) qui décrit les endpoints REST de FuSIIon.
 
 ```gherkin
