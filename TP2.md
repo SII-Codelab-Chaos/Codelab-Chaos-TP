@@ -156,9 +156,10 @@ Lancer le tir
 mvn -Dgatling.compilerJvmArgs="-Xmx256m" gatling:test
 ```
 
-> **Note :** Ce tir de charge va durer 4 minutes, un tir de charge peut durer plusieurs heures !
+> **Note :** Vous pouvez suivre l'évolution des résultats du tir de charge en console pendant toute la durée du tir
 
 Ouvrir le rapport du tir de charge 
+Ce rapport est disponible via le lien en en console à la fin de l'éxecution du goal maven
 
 ```shell
 Please open the following file: ..\Codelab-Chaos-TP\TP2-docker-gatling\target\gatling\basicsimulation-numero_de_simulation\index.html
@@ -216,7 +217,7 @@ Lancer le tir
 mvn -Dgatling.compilerJvmArgs="-Xmx256m" gatling:test
 ```
 
-> **Note :** Ce tir de charge va durer 4 minutes, un tir de charge peut durer plusieurs heures !
+> **Note :** Pendant l'éxecution de ce tir ( 3 minutes), n'hesitez pas à poser des questions à vos speakers !
 
 Ouvrir le rapport du tir de charge 
 
@@ -245,26 +246,6 @@ docker-compose down
 docker-compose up -d
 ```
 
-Vérifier que les services ont bien démarrés avec Chaos-monkey dans les logs de démarrage
-
-```shell
-    docker container ps
-
-    docker logs idDuContainer
-
-    2020-01-03 14:25:20.895  INFO 1 --- [           main] d.c.s.b.c.monkey.component.ChaosMonkey   : 
-         _____ _                       __  __             _
-        / ____| |                     |  \/  |           | |
-       | |    | |__   __ _  ___  ___  | \  / | ___  _ __ | | _____ _   _
-       | |    | '_ \ / _` |/ _ \/ __| | |\/| |/ _ \| '_ \| |/ / _ | | | |
-       | |____| | | | (_| | (_) \__ \ | |  | | (_) | | | |   |  __| |_| |
-        \_____|_| |_|\__,_|\___/|___/ |_|  |_|\___/|_| |_|_|\_\___|\__, |
-                                                                    __/ |
-        _ready to do evil!                                         |___/
-    
-    :: Chaos Monkey for Spring Boot                                    ::
-```
-
 ## Gatling
 
 ### Lancer un tir de charge
@@ -275,7 +256,7 @@ Lancer le tir
 mvn -Dgatling.compilerJvmArgs="-Xmx256m" gatling:test
 ```
 
-> **Note :** Ce tir de charge va durer 4 minutes, un tir de charge peut durer plusieurs heures !
+> **Note :** Ce tir de charge va durer 3 minutes, un tir de charge peut durer plusieurs heures !
 
 Ouvrir le rapport du tir de charge 
 
