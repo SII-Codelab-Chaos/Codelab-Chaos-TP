@@ -57,13 +57,12 @@ Codelab-Chaos-TP/TP2-docker-gatling/src/test/scala/fusiion/BasicSimulation.scala
 #### Définition du protocole de communication
 
 ```shell
-  val httpProtocol = http
-    .baseUrl("http://localhost")
-    .acceptHeader("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8")
-    .doNotTrackHeader("1")
-    .acceptLanguageHeader("en-US,en;q=0.5")
-    .acceptEncodingHeader("gzip, deflate")
-    .userAgentHeader("Mozilla/5.0 (Windows NT 5.1; rv:31.0) Gecko/20100101 Firefox/31.0")
+  val scn = scenario("BasicSimulation")
+    .exec(http("authentication") // Nom de l'appel dans le rapport gatling
+      .post("/gestionAuthentification/login") // appel HTTP POST sur la ressource REST /gestionAuthentification/login
+      .body(StringBody("{\"username\" : \"pgaultier\", \"password\" : \"password\"}")) // body du POST avec user/password
+      .check(header("Authorization").saveAs("token")) // stockage du token JWT dans une variable token
+    ).pause(2) // pause de 2 seconde pour simuler un vrai utilisateur
 ```
 
 #### Définition du scénario fonctionnel
@@ -89,50 +88,63 @@ Appel du service "Collaborateur" pour récuperer la liste des collaborateurs
     ).pause(2)
 ```
 
-Appel du service "Competence" pour récuperer la liste de toutes les competences
+Completer la fin du scénario fonctionnel du tir de charge à l'aide de la feature suivante qui décrit le comportement attendu.
+Pour cela, utiliser ce [SWAGGER](https://sii-codelab-chaos.github.io/Codelab-Chaos-TP/openapi.yaml) qui décrit les endpoints REST de FuSIIon.
 
-```shell
-  .exec(http("Competence/all")
-    .get(":8081/competences")
-    .header("Authorization", "${token}")
-    .check(status.is(session => 200))
-  ).pause(2)
+```gherkin
+Feature: FuSIIon cas nominal
+Scenario: Connection a FuSIIon puis parcours sur l'application'
+
+Given Soit un utilisateur de FuSIIon avec un username "pgaultier@sii.fr" et un password "password
+And un username "pgaultier@sii.fr"
+And un password "password
+When l'utilisateur se connecte via la mire d'authentification de FuSIIon avec ses identifiants
+Then il récupere un token d'authentification JWT
+
+Given Soit un utilisateur de FuSIIon avec un token d'authentification
+When l'utilisateur demande la liste des collaborateurs
+Then il récupere une liste de collaborateurs
+
+Given Soit un utilisateur de FuSIIon avec un token d'authentification
+When l'utilisateur demande la liste des competences
+Then il récupere une liste de competence
+
+Given Soit un utilisateur de FuSIIon avec un token d'authentification
+When l'utilisateur demande le profil d'un collaborateur avec son identifiant
+Then il récupere le collaborateur correspondant à son identifiant 
+
+Given Soit un utilisateur de FuSIIon avec un token d'authentification
+When l'utilisateur demande la liste des competences pour son profil
+Then il récupere une liste de competences correspondant a son profil
+
+Given Soit un utilisateur de FuSIIon avec un token d'authentification
+When l'utilisateur ajoute une competence à son profil
+Then il récupere une liste de competences correspondant a son profil
+
+Given Soit un utilisateur de FuSIIon avec un token d'authentification
+When l'utilisateur demande la liste des clients
+Then il récupere une liste de clients
+
 ```
-
-Appel du service "Competence" pour récuperer la liste des competences d'un collaborateur
-
-```shell
-  .exec(http("Competence/pgaultier")
-    .get(":8081/competences/collaborateur/pgaultier@sii.fr")
-    .header("Authorization", "${token}")
-    .check(status.is(session => 200))
-  ).pause(2)
-```
-
-Appel du service "Client" pour récuperer la liste de tous les clients
-
-```shell
-
-  .exec(http("Clients/all")
-    .get(":8084/clients")
-    .header("Authorization", "${token}")
-    .check(status.is(session => 200))
-  )
-```
-
 
 #### Définition du set-up du tir
+
+Pour ce TP2, nous allons faire des tirs de charge de 3 minutes, soit 180 secondes.
+FuSIIon est à destination des collaborateurs de SII Atlantique, soit environ 300 personnes.
+
+Pour que ce tir soit validant, nous avons besoin que 80% des requetes soit en succès et moins de 5% d'erreur sur le service d'authentification.
+
+Vous pouvez rajouter d'autres assertions, par exemple sur le temps de reponses, ou le nombre de requetes par secondes : https://gatling.io/docs/current/general/assertions
 
 ```shell
   setUp(
     scn.inject(
-      rampUsers(300) during (180 seconds))).protocols(httpProtocol)
+      rampUsers({{nb_User}}) during ({{nb_Seconde}} seconds))).protocols(httpProtocol)
     .assertions(
-      global.successfulRequests.percent.gt(80),
-      forAll.failedRequests.percent.lt(5)
+      global.successfulRequests.percent.gt({{percentage_Successful_Resquest}}),
+      details("authentication").failedRequests.percent.lt({{percentage_Failed_Request}})
     )
 ```
-
 
 ### Lancer un tir de charge
 
