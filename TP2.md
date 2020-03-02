@@ -101,6 +101,7 @@ Pour cela, utiliser ce [SWAGGER](https://sii-codelab-chaos.github.io/fusiion-swa
 | collaborateurs       |     localhost:8083     |
 | clients              |     localhost:8084     |
 
+
 ```gherkin
 Feature: FuSIIon cas nominal
 Scenario: Connection a FuSIIon puis parcours sur l'application'
