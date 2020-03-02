@@ -94,6 +94,13 @@ Completer la fin du scénario fonctionnel du tir de charge à l'aide de la featu
 
 Pour cela, utiliser ce [SWAGGER](https://sii-codelab-chaos.github.io/fusiion-swagger/) qui décrit les endpoints REST de FuSIIon.
 
+| Service              |         Adresse     
+| :------------------- | :--------------------: |
+| authentication       |     localhost:8080     |
+| competences          |     localhost:8081     |
+| collaborateurs       |     localhost:8083     |
+| clients              |     localhost:8084     |
+
 ```gherkin
 Feature: FuSIIon cas nominal
 Scenario: Connection a FuSIIon puis parcours sur l'application'
