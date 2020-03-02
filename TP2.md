@@ -58,12 +58,13 @@ Codelab-Chaos-TP/TP2-docker-gatling/src/test/scala/fusiion/BasicSimulation.scala
 
 
 ```shell
-  val scn = scenario("BasicSimulation")
-    .exec(http("authentication") // Nom de l appel dans le rapport gatling
-      .post("/gestionAuthentification/login") // appel HTTP POST sur la ressource REST /gestionAuthentification/login
-      .body(StringBody("{\"username\" : \"pgaultier\", \"password\" : \"password\"}")) // body du POST avec user/password
-      .check(header("Authorization").saveAs("token")) // stockage du token JWT dans une variable token
-    ).pause(2)
+  val httpProtocol = http
+    .baseUrl("http://localhost")
+    .acceptHeader("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8")
+    .doNotTrackHeader("1")
+    .acceptLanguageHeader("en-US,en;q=0.5")
+    .acceptEncodingHeader("gzip, deflate")
+    .userAgentHeader("Mozilla/5.0 (Windows NT 5.1; rv:31.0) Gecko/20100101 Firefox/31.0")
 ```
 
 #### Définition du scénario fonctionnel
@@ -71,11 +72,11 @@ Codelab-Chaos-TP/TP2-docker-gatling/src/test/scala/fusiion/BasicSimulation.scala
 Ajouter le début du scénario avec un premier appel au service d'authentification
 
 ```shell
- val scn = scenario("BasicSimulation")
-    .exec(http("authentication")
-      .post(":8080/login")
-      .body(StringBody("{\"username\" : \"pgaultier\", \"password\" : \"password\"}"))
-      .check(header("Authorization").saveAs("token"))
+  val scn = scenario("BasicSimulation")
+    .exec(http("authentication") // Nom de l appel dans le rapport gatling
+      .post("/gestionAuthentification/login") // appel HTTP POST sur la ressource REST /gestionAuthentification/login
+      .body(StringBody("{\"username\" : \"pgaultier\", \"password\" : \"password\"}")) // body du POST avec user/password
+      .check(header("Authorization").saveAs("token")) // stockage du token JWT dans une variable token
     ).pause(2)
 ```
 
