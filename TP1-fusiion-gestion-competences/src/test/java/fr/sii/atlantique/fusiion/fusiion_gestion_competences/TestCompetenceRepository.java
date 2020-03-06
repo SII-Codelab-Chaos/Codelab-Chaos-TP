@@ -12,6 +12,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.neo4j.DataNeo4jTest;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import fr.sii.atlantique.fusiion.fusiion_gestion_competences.domain.Collaborateur;
@@ -22,7 +23,7 @@ import fr.sii.atlantique.fusiion.fusiion_gestion_competences.repositories.Compet
 import fr.sii.atlantique.fusiion.fusiion_gestion_competences.repositories.CompetentSurRepository;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = GestionCompetencesApplication.class)
+@ContextConfiguration(classes = GestionCompetencesApplication.class)
 @DataNeo4jTest//permet, entre autre, de réinitialiser la base à chaque test
 public class TestCompetenceRepository {
 	

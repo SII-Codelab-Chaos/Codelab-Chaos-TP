@@ -1,7 +1,6 @@
 package fr.sii.atlantique.fusiion.fusiion_gestion_competences.config.access.autorisations;
 
 import fr.sii.atlantique.fusiion.fusiion_gestion_competences.config.access.Fonctions;
-import fr.sii.atlantique.fusiion.fusiion_gestion_competences.config.access.FonctionsCollaborateurRestController;
 import fr.sii.atlantique.fusiion.fusiion_gestion_competences.config.access.FonctionsCompetenceRestController;
 import fr.sii.atlantique.fusiion.fusiion_gestion_competences.config.access.FonctionsObjectifRestController;
 import fr.sii.atlantique.fusiion.fusiion_gestion_competences.config.access.FonctionsTagRestController;
@@ -19,13 +18,7 @@ public enum MTAutorisations implements Autorisations {
 	,COMP_FIND_LIKE_COMPETENCE(FonctionsCompetenceRestController.FIND_LIKE_COMPETENCE)
 	,COMP_CREATE_RELATION_COLLAB_COMP(FonctionsCompetenceRestController.CREATE_RELATION_COLLAB_COMP)
 	,COMP_GET_SENIORITE_COMPETENCE(FonctionsCompetenceRestController.GET_SENIORITE_COMPETENCE)
-	,COMP_FIND_TAGS_BY_AK_COMPETENCE(FonctionsCompetenceRestController.FIND_TAGS_BY_AK_COMPETENCE)
-	,COMP_GET_MENTION_APPRENDRE_COMPETENCE(FonctionsCompetenceRestController.GET_MENTION_APPRENDRE_COMPETENCE)
-	,COMP_MODIFIER_APPRENDRE_COMPETENCE(FonctionsCompetenceRestController.MODIFIER_APPRENDRE_COMPETENCE)
-	,COMP_CREER_APPRENDRE_COMPETENCE(FonctionsCompetenceRestController.CREER_APPRENDRE_COMPETENCE)
-	,COMP_GET_MENTION_INTERET_COMPETENCE(FonctionsCompetenceRestController.GET_MENTION_INTERET_COMPETENCE)
-	,COMP_MODIFIER_INTERET_COMPETENCE(FonctionsCompetenceRestController.MODIFIER_INTERET_COMPETENCE)
-	,COMP_GET_CREER_INTERET_COMPETENCE(FonctionsCompetenceRestController.CREER_INTERET_COMPETENCE)
+	,COMP_FIND_TAGS_RELATION_BY_AK_COMPETENCE(FonctionsCompetenceRestController.FIND_TAGS_BY_AK_COMPETENCE)
 	
 	,TAGS_GET_ALL(FonctionsTagRestController.GET_ALL)
 	,TAGS_FIND_COMPETENCES_BY_AK_TAG(FonctionsTagRestController.FIND_COMPETENCES_BY_AK_TAG)
@@ -35,9 +28,6 @@ public enum MTAutorisations implements Autorisations {
 	,OBJECTIF_GET_ALL(FonctionsObjectifRestController.GET_ALL)
 	,OBJECTIF_GET_DETAIL_OBJECTIF(FonctionsObjectifRestController.GET_DETAIL_OBJECTIF)
 	,OBJECTIF_GET_DETAIL_OBJECTIF_RELATION(FonctionsObjectifRestController.GET_DETAIL_OBJECTIF_RELATION)
-	
-	,COLLABORATEUR_FIND_OBJECTIFS_BY_AKCOLLABORATEUR_VALIDE(FonctionsCollaborateurRestController.FIND_OBJECTIFS_BY_AKCOLLABORATEUR_VALIDE)
-	,COLLABORATEUR_FIND_OBJECTIFS_BY_AKCOLLABORATEUR(FonctionsCollaborateurRestController.FIND_OBJECTIFS_BY_AKCOLLABORATEUR)
 	;
 	
 	Fonctions fonction;

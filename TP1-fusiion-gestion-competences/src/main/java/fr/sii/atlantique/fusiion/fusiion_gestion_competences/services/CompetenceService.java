@@ -192,7 +192,7 @@ public class CompetenceService {
 			throw new CompetenceExistanteException();
 		}
 		this.competenceRepository.save(competence);
-		Notification notification =  new Notification(Type.TOUS, null, "Nouvelle competence dans le referentiel : " + competence.getNom());
+		Notification notification =  new Notification(Type.TOUS, null, "Une nouvelle compétence a été ajoutée : " + competence.getNom());
 		this.rabbitTemplate.convertAndSend(fanoutExchange.getName(), "", mapper.writeValueAsString(notification));
 		return competence;
 	}
