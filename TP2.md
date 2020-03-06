@@ -94,14 +94,15 @@ Completer la fin du scénario fonctionnel du tir de charge à l'aide de la featu
 
 Pour cela, utiliser ce [SWAGGER](https://sii-codelab-chaos.github.io/fusiion-swagger/) qui décrit les endpoints REST de FuSIIon.
 
+Adresses des differents services :
+
 | Service              |         Adresse     
 | :------------------- | :--------------------: |
 | authentication       |     localhost:8080     |
 | competences          |     localhost:8081     |
 | collaborateurs       |     localhost:8083     |
 | clients              |     localhost:8084     |
-
-
+  
 ```gherkin
 Feature: FuSIIon cas nominal
 Scenario: Connection a FuSIIon puis parcours sur l'application'
@@ -129,8 +130,12 @@ When l'utilisateur demande la liste des competences pour son profil
 Then il récupere une liste de competences correspondant a son profil
 
 Given Soit un utilisateur de FuSIIon avec un token d'authentification
-When l'utilisateur ajoute une competence à son profil
-Then il récupere une liste de competences correspondant a son profil
+When l'utilisateur crée une nouvelle competence "Docker" ( {"nom" : "Docker", "description" : "J'aime les baleines et les conteneurs", "akCompetence" : "Docker"})
+Then il récupere un code retour "200 OK"
+
+Given Soit un utilisateur de FuSIIon avec un token d'authentification
+When l'utilisateur indique qu'il a envie d'apprendre la competence "Docker"
+Then il récupere un code retour "200 OK"
 
 Given Soit un utilisateur de FuSIIon avec un token d'authentification
 When l'utilisateur demande la liste des clients
