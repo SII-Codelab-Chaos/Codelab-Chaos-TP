@@ -102,6 +102,7 @@ Adresses des differents services :
 | competences          |     localhost:8081     |
 | collaborateurs       |     localhost:8083     |
 | clients              |     localhost:8084     |
+
 <br/>
 
 ```gherkin
@@ -131,7 +132,7 @@ When l'utilisateur demande la liste des competences pour son profil
 Then il récupere une liste de competences correspondant a son profil
 
 Given Soit un utilisateur de FuSIIon avec un token d'authentification
-When l'utilisateur crée une nouvelle competence "Docker" ( {"nom" : "Docker", "description" : "J'aime les baleines", "akCompetence" : "Docker"})
+When l'utilisateur crée une nouvelle competence "Docker"
 Then il récupere un code retour "200 OK"
 
 Given Soit un utilisateur de FuSIIon avec un token d'authentification
