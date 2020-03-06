@@ -91,7 +91,7 @@ Exemple sous windows :
 ### Lancer un tir de charge
 
 Gatling offre la possibilité de pusher les métriques/données du tir directement dans un graphite afin de mutualiser les résultats et des les visualiser sur Grafana.
-Pour ce faire, nous avons mis à votre distribution un grahphite afin de partager vos différents résultats, il suffit d'ajouter/modifier la configuration gatling (gatling/src/test/resources/gatling.conf) :
+Pour ce faire, nous avons mis à votre distribution un graphite afin de partager vos différents résultats, il suffit d'ajouter/modifier la configuration gatling (gatling/src/test/resources/gatling.conf) :
 
 ```
 gatling {
@@ -197,7 +197,7 @@ spec:
        ...
 ```
 
-C'est partit pour déclancher le chaos dans votre application :
+C'est partit pour déclencher le chaos dans votre application :
 ```
 kubectl create -f chaoskube/
 ```
