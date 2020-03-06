@@ -6,47 +6,26 @@ import scala.concurrent.duration._
 
 class BasicSimulation extends Simulation {
 
-  val httpProtocol = http
-    .baseUrl("http://localhost")
-    .acceptHeader("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8")
-    .doNotTrackHeader("1")
-    .acceptLanguageHeader("en-US,en;q=0.5")
-    .acceptEncodingHeader("gzip, deflate")
-    .userAgentHeader("Mozilla/5.0 (Windows NT 5.1; rv:31.0) Gecko/20100101 Firefox/31.0")
+  // Protocole de communication
+
+  val httpProtocol
+
+  // Scenario Fonctionnel
 
   val scn = scenario("BasicSimulation")
-    .exec(http("authentication")
-      .post(":8080/login")
-      .body(StringBody("{\"username\" : \"pgaultier\", \"password\" : \"password\"}"))
-      .check(header("Authorization").saveAs("token"))
+    .exec(http("authentication") // Nom de l'appel dans le rapport gatling
+      .post("/gestionAuthentification/login") // appel HTTP POST sur la ressource REST /gestionAuthentification/login
+      .body(StringBody("{\"username\" : \"pgaultier\", \"password\" : \"password\"}")) // body du POST avec user/password
+      .check(header("Authorization").saveAs("token")) // stockage du token JWT dans une variable token
+    ).pause(2) // pause de 2 seconde pour simuler un vrai utilisateur
+    .exec(http({{Nom_Sequence}})
+      .get({{Adresse_Service_Web}})
+      .header("Authorization", "${token}") // reutilisation du token JWT pour s'authentifier auprès d'un autre service
+      .check(status.is(session => 200)) // Test du code de retour HTTP : 200 OK
     ).pause(2)
-    .exec(http("Collaborateur/pgaultier")
-    .get(":8083/collaborateurs/pgaultier@sii.fr")
-    .header("Authorization", "${token}")
-    .check(status.is(session => 200))
-  ).pause(2)
-  .exec(http("Competence/all")
-    .get(":8081/competences")
-    .header("Authorization", "${token}")
-    .check(status.is(session => 200))
-  ).pause(2)
-  .exec(http("Competence/pgaultier")
-    .get(":8081/competences/collaborateur/pgaultier@sii.fr")
-    .header("Authorization", "${token}")
-    .check(status.is(session => 200))
-  ).pause(2)
-  .exec(http("Clients/all")
-    .get(":8084/clients")
-    .header("Authorization", "${token}")
-    .check(status.is(session => 200))
-  )
 
-  setUp(
-    scn.inject(
-      rampUsers(300) during (180 seconds))).protocols(httpProtocol)
-    .assertions(
-      global.successfulRequests.percent.gt(80),
-      forAll.failedRequests.percent.lt(5)
-    )
+  // Setup du tir de charge
+
+  setUp()
 
 }

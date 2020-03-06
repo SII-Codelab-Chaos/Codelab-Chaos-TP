@@ -50,9 +50,12 @@ docker container ps
 
 ### Création du tir de charge
 
-Configurer le tir de charge dans le fichier Codelab-Chaos-TP/TP2-docker-gatling/src/test/scala/fusiion/BasicSimulation.scala
+#### Configurer le tir de charge dans le fichier : 
 
-Définition du protocole de communication
+Codelab-Chaos-TP/TP2-docker-gatling/src/test/scala/fusiion/BasicSimulation.scala
+
+#### Définition du protocole de communication
+
 
 ```shell
   val httpProtocol = http
@@ -64,50 +67,101 @@ Définition du protocole de communication
     .userAgentHeader("Mozilla/5.0 (Windows NT 5.1; rv:31.0) Gecko/20100101 Firefox/31.0")
 ```
 
-Définition du scénario
+#### Définition du scénario fonctionnel
+
+Ajouter le début du scénario avec un premier appel au service d'authentification
 
 ```shell
- val scn = scenario("BasicSimulation")
-    .exec(http("authentication")
-      .post(":8080/login")
-      .body(StringBody("{\"username\" : \"pgaultier\", \"password\" : \"password\"}"))
-      .check(header("Authorization").saveAs("token"))
+  val scn = scenario("BasicSimulation")
+    .exec(http("authentication") // Nom de l appel dans le rapport gatling
+      .post(":8080/login") // appel HTTP POST sur la ressource REST /gestionAuthentification/login
+      .body(StringBody("{\"username\" : \"pgaultier\", \"password\" : \"password\"}")) // body du POST avec user/password
+      .check(header("Authorization").saveAs("token")) // stockage du token JWT dans une variable token
     ).pause(2)
-    .exec(http("Collaborateur/pgaultier")
-    .get(":8083/collaborateurs/pgaultier@sii.fr")
-    .header("Authorization", "${token}")
-    .check(status.is(session => 200))
-  ).pause(2)
-  .exec(http("Competence/all")
-    .get(":8081/competences")
-    .header("Authorization", "${token}")
-    .check(status.is(session => 200))
-  ).pause(2)
-  .exec(http("Competence/pgaultier")
-    .get(":8081/competences/collaborateur/pgaultier@sii.fr")
-    .header("Authorization", "${token}")
-    .check(status.is(session => 200))
-  ).pause(2)
-  .exec(http("Clients/all")
-    .get(":8084/clients")
-    .header("Authorization", "${token}")
-    .check(status.is(session => 200))
-  )
-
 ```
 
-Définition du set-up du tir
+Ajouter un deuxième appel au scénario en récuperant la liste des collaborateurs
 
 ```shell
+    .exec(http("Collaborateur/pgaultier")
+        .get(":8083/collaborateurs/pgaultier@sii.fr")
+        .header("Authorization", "${token}")
+        .check(status.is(session => 200))
+    ).pause(2)
+```
+
+Completer la fin du scénario fonctionnel du tir de charge à l'aide de la feature suivante qui décrit le comportement attendu.
+
+Pour cela, utiliser ce [SWAGGER](https://sii-codelab-chaos.github.io/fusiion-swagger/) qui décrit les endpoints REST de FuSIIon.
+
+Adresses des differents services :
+
+| Service              |         Adresse     
+| :------------------- | :--------------------: |
+| authentication       |     localhost:8080     |
+| competences          |     localhost:8081     |
+| collaborateurs       |     localhost:8083     |
+| clients              |     localhost:8084     |
+
+<br/>
+
+```gherkin
+Feature: FuSIIon cas nominal
+Scenario: Connection a FuSIIon puis parcours sur l'application
+
+Given Soit un utilisateur de FuSIIon
+And un username "pgaultier@sii.fr"
+And un password "password
+When l'utilisateur se connecte via la mire d'authentification de FuSIIon avec ses identifiants
+Then il récupere un token d'authentification JWT
+
+Given Soit un utilisateur de FuSIIon avec un token d'authentification
+When l'utilisateur demande la liste des collaborateurs
+Then il récupere une liste de collaborateurs
+
+Given Soit un utilisateur de FuSIIon avec un token d'authentification
+When l'utilisateur demande la liste des competences
+Then il récupere une liste de competence
+
+Given Soit un utilisateur de FuSIIon avec un token d'authentification
+When l'utilisateur demande le profil d'un collaborateur avec son identifiant
+Then il récupere le collaborateur correspondant à son identifiant 
+
+Given Soit un utilisateur de FuSIIon avec un token d'authentification
+When l'utilisateur crée une nouvelle competence "Docker"
+Then il récupere un code retour "200 OK"
+
+Given Soit un utilisateur de FuSIIon avec un token d'authentification
+When l'utilisateur associe la competence "Docker" à son utilisateur
+Then il récupere un code retour "200 OK"
+
+Given Soit un utilisateur de FuSIIon avec un token d'authentification
+When l'utilisateur demande la liste des competences pour son profil
+Then il récupere une liste de competences correspondant a son profil
+
+Given Soit un utilisateur de FuSIIon avec un token d'authentification
+When l'utilisateur demande la liste des clients
+Then il récupere une liste de clients
+```
+
+#### Définition du set-up du tir
+
+Completer le setup du tir à l'aide des informations suivantes :
+
+```shell
+# Pour ce TP2, nous allons faire des tirs de charge de 3 minutes, soit 180 secondes.
+# FuSIIon est à destination des collaborateurs de SII Atlantique, soit environ 300 personnes.
+# Pour que ce tir soit validant, nous avons besoin que 80% des requetes soit en succès et moins de 5% d'erreur sur le service d'authentification.
+# Vous pouvez rajouter d'autres assertions, par exemple sur le temps de reponses, ou le nombre de requetes par secondes : [https://gatling.io/docs/current/general/assertions](https://gatling.io/docs/current/general/assertions)
+
   setUp(
     scn.inject(
-      rampUsers(300) during (180 seconds))).protocols(httpProtocol)
+      rampUsers({{nb_User}}) during ({{nb_Seconde}} seconds))).protocols(httpProtocol)
     .assertions(
-      global.successfulRequests.percent.gt(80),
-      forAll.failedRequests.percent.lt(5)
+      global.successfulRequests.percent.gt({{percentage_Successful_Resquest}}),
+      details("authentication").failedRequests.percent.lt({{percentage_Failed_Request}})
     )
 ```
-
 
 ### Lancer un tir de charge
 
@@ -117,9 +171,10 @@ Lancer le tir
 mvn -Dgatling.compilerJvmArgs="-Xmx256m" gatling:test
 ```
 
-> **Note :** Ce tir de charge va durer 4 minutes, un tir de charge peut durer plusieurs heures !
+> **Note :** Vous pouvez suivre l'évolution des résultats du tir de charge en console pendant toute la durée du tir
 
 Ouvrir le rapport du tir de charge 
+Ce rapport est disponible via le lien en en console à la fin de l'éxecution du goal maven
 
 ```shell
 Please open the following file: ..\Codelab-Chaos-TP\TP2-docker-gatling\target\gatling\basicsimulation-numero_de_simulation\index.html
@@ -177,7 +232,7 @@ Lancer le tir
 mvn -Dgatling.compilerJvmArgs="-Xmx256m" gatling:test
 ```
 
-> **Note :** Ce tir de charge va durer 4 minutes, un tir de charge peut durer plusieurs heures !
+> **Note :** Pendant l'éxecution de ce tir ( 3 minutes), n'hesitez pas à poser des questions à vos speakers !
 
 Ouvrir le rapport du tir de charge 
 
@@ -206,26 +261,6 @@ docker-compose down
 docker-compose up -d
 ```
 
-Vérifier que les services ont bien démarrés avec Chaos-monkey dans les logs de démarrage
-
-```shell
-    docker container ps
-
-    docker logs idDuContainer
-
-    2020-01-03 14:25:20.895  INFO 1 --- [           main] d.c.s.b.c.monkey.component.ChaosMonkey   : 
-         _____ _                       __  __             _
-        / ____| |                     |  \/  |           | |
-       | |    | |__   __ _  ___  ___  | \  / | ___  _ __ | | _____ _   _
-       | |    | '_ \ / _` |/ _ \/ __| | |\/| |/ _ \| '_ \| |/ / _ | | | |
-       | |____| | | | (_| | (_) \__ \ | |  | | (_) | | | |   |  __| |_| |
-        \_____|_| |_|\__,_|\___/|___/ |_|  |_|\___/|_| |_|_|\_\___|\__, |
-                                                                    __/ |
-        _ready to do evil!                                         |___/
-    
-    :: Chaos Monkey for Spring Boot                                    ::
-```
-
 ## Gatling
 
 ### Lancer un tir de charge
@@ -236,7 +271,7 @@ Lancer le tir
 mvn -Dgatling.compilerJvmArgs="-Xmx256m" gatling:test
 ```
 
-> **Note :** Ce tir de charge va durer 4 minutes, un tir de charge peut durer plusieurs heures !
+> **Note :** Ce tir de charge va durer 3 minutes, un tir de charge peut durer plusieurs heures !
 
 Ouvrir le rapport du tir de charge 
 
