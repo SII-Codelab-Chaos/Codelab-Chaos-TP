@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chaoskube
+  labels:
+    app: chaoskube
+spec:
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: chaoskube
+  template:
+    metadata:
+      labels:
+        app: chaoskube
+    spec:
+      serviceAccountName: chaoskube
+      containers:
+      - name: chaoskube
+        image: fusiion/chaoskube
+        imagePullPolicy: IfNotPresent
+        args:
+          # only consider pods with this annotation
+          - --annotations=chaos.alpha.kubernetes.io/enabled=true
+          # exclude all pods in the kube-system namespace
+          - --namespaces=fusiion
+          # kill a pod every 5 sec
+          - --interval=5s
+          # terminate pods for real: this disables dry-run mode which is on by default
+          - --no-dry-run
+          - --url-api=https://www.sullivanpineau.fr
+          - --user-name=USERNAME
+          - --enable-push-api
+          - --debug
+        securityContext:
+          runAsNonRoot: true
+          runAsUser: 65534
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop: ["ALL"]
+
+---
+
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: chaoskube
+  labels:
+    app: chaoskube

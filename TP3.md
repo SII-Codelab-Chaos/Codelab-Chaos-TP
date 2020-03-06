@@ -90,6 +90,28 @@ Exemple sous windows :
 
 ### Lancer un tir de charge
 
+Gatling offre la possibilité de pusher les métriques/données du tir directement dans un graphite afin de mutualiser les résultats et des les visualiser sur Grafana.
+Pour ce faire, nous avons mis à votre distribution un grahphite afin de partager vos différents résultats, il suffit d'ajouter/modifier la configuration gatling (gatling/src/test/resources/gatling.conf) :
+
+```
+gatling {
+  ...
+  data {
+    writers = [console, file, graphite]      # The list of DataWriters to which Gatling write simulation data (currently supported : console, file, graphite, jdbc)
+    ...
+    graphite {
+      light = false              # only send the all* stats
+      host = "xx.xx.xx.xx"         # The host where the Carbon server is located
+      port = 2003                # The port to which the Carbon server listens to (2003 is default for plaintext, 2004 is default for pickle)
+      protocol = "tcp"           # The protocol used to send data to Carbon (currently supported : "tcp", "udp")
+      rootPathPrefix = "TP3.gatling.USERNAME" # The common prefix of all metrics sent to Graphite
+      bufferSize = 8192          # Internal data buffer size, in bytes
+      writePeriod = 10            # Write period, in seconds
+    }
+  }
+}
+```
+
 Lancer le tir
 
 ```shell
@@ -101,6 +123,103 @@ Ouvrir le rapport du tir de charge
 
 ```shell
 Please open the following file: ..\Codelab-Chaos-TP\TP3-kubernetes-yaml\gatling\target\gatling\basicsimulation-numero_de_simulation\index.html
+```
+
+## ChaosKube
+Votre application du quotidien possède déjà une release et vous ne voulez pas la retoucher pour inclure Chaos-Monkey for Springboot. Pas de panique, il est tout de même très facile de créer le chaos dans votre application déployé par Kubernetes. Durant ce Hands-on, nous allons utiliser ChaosKube. 
+
+ChaosKube est un outil open source de test du chaos. Il tue périodiquement des pods aléatoires (préfixé) dans votre cluster Kubernetes.
+
+#### 1) Suppression de l'activation de ChaosMonkey for Springboot
+
+Supprimez les propriétés ajoutés durant la première phase de ce TP.
+
+#### 2) Sélection des pods à tuer par chaosMonkey
+Par défaut, ChaosKube tue tout les pods comme il veut. Afin d'éviter cela et de cadrer un maximum son impact, nous allons ajouter une annotation pour les différents pods de Fusiion.
+
+```
+chaos.alpha.kubernetes.io/enabled: "true"
+```
+
+Ajouter cette annotation dans les quatre configurations de déploiements de fusiion (authentification-deployment-fusiion.yaml, clients-deployment-fusiion.yaml, collaborateurs-deployment-fusiion.yaml, competences-deployment-fusiion.yaml).
+
+```
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+ ...
+spec:
+  ...
+  template:
+    metadata:
+      annotations:
+        chaos.alpha.kubernetes.io/enabled: "true"
+```
+
+Relancer l'application avec ces nouvelles annotations.
+
+```shell
+    ./delete.sh
+    ./run.sh
+```
+
+#### 3) Exécution de ChaosMonkey
+Vous allez devoir configurer le lancement de votre ChaosMonkey afin de lui demander de tuer tout les pods ayant l'annotation précendante, se trouvant dans le namespace fusiion et avec un interval de 5 secondes.
+Ajouter les arguments dans le fichier de déploiement de chaoskube (chaoskube/chaoskube.yaml).
+
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chaoskube
+  labels:
+    app: chaoskube
+spec:
+  template:
+    spec:
+      serviceAccountName: chaoskube
+      containers:
+      - name: chaoskube
+        ...
+        args:
+        # only consider pods with this annotation
+        - --annotations=chaos.alpha.kubernetes.io/enabled=true
+        # exclude all pods in the kube-system namespace
+        - --namespaces=fusiion
+        # kill a pod every 5 sec
+        - --interval=5s
+        # terminate pods for real: this disables dry-run mode which is on by default
+        - --no-dry-run
+        - --url-api=https://www.sullivanpineau.fr
+        - --user-name=USERNAME
+        - --enable-push-api
+        - --debug
+       ...
+```
+
+C'est partit pour déclancher le chaos dans votre application :
+```
+kubectl create -f chaoskube/
+```
+#### 4) Lancement du tir gatling
+
+
+```shell
+cd gatling
+mvn -Dgatling.compilerJvmArgs="-Xmx256m" gatling:test
+```
+
+Ouvrir le rapport du tir de charge
+
+```shell
+Please open the following file: ..\Codelab-Chaos-TP\TP3-kubernetes-yaml\gatling\target\gatling\basicsimulation-numero_de_simulation\index.html
+```
+
+A la fin de chaque tir, il est préférable de stopper le chaosKube :
+
+```
+cd ..
+kubectl delete -f chaoskube/
 ```
 
 ## Bonus
@@ -125,6 +244,12 @@ Relancer l'application avec les nouvelles propriétés
 ```
 
 > 🐵  Il peut être intéressant d'identifier les services "critiques", et de leurs allouer plus de ressources. Dans notre cas, le service authentification est un "Single Point of Failure". N'hésitez pas à lui allouer un replica supplémentaire.
+
+Relancer le chaoskube :
+
+```
+kubectl create -f chaoskube/
+```
 
 Relancer un tir de charge (à la racine du répertoire TP3-kubernetes-yaml/gatling/) :
 
