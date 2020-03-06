@@ -102,7 +102,8 @@ Adresses des differents services :
 | competences          |     localhost:8081     |
 | collaborateurs       |     localhost:8083     |
 | clients              |     localhost:8084     |
-  
+<br/>
+
 ```gherkin
 Feature: FuSIIon cas nominal
 Scenario: Connection a FuSIIon puis parcours sur l'application'
@@ -130,11 +131,11 @@ When l'utilisateur demande la liste des competences pour son profil
 Then il récupere une liste de competences correspondant a son profil
 
 Given Soit un utilisateur de FuSIIon avec un token d'authentification
-When l'utilisateur crée une nouvelle competence "Docker" ( {"nom" : "Docker", "description" : "J'aime les baleines et les conteneurs", "akCompetence" : "Docker"})
+When l'utilisateur crée une nouvelle competence "Docker" ( {"nom" : "Docker", "description" : "J'aime les baleines", "akCompetence" : "Docker"})
 Then il récupere un code retour "200 OK"
 
 Given Soit un utilisateur de FuSIIon avec un token d'authentification
-When l'utilisateur indique qu'il a envie d'apprendre la competence "Docker"
+When l'utilisateur associe la competence "Docker" à son utilisateur
 Then il récupere un code retour "200 OK"
 
 Given Soit un utilisateur de FuSIIon avec un token d'authentification
