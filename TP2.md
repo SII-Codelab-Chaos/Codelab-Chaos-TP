@@ -107,7 +107,7 @@ Adresses des differents services :
 
 ```gherkin
 Feature: FuSIIon cas nominal
-Scenario: Connection a FuSIIon puis parcours sur l'application'
+Scenario: Connection a FuSIIon puis parcours sur l'application
 
 Given Soit un utilisateur de FuSIIon
 And un username "pgaultier@sii.fr"
@@ -128,10 +128,6 @@ When l'utilisateur demande le profil d'un collaborateur avec son identifiant
 Then il récupere le collaborateur correspondant à son identifiant 
 
 Given Soit un utilisateur de FuSIIon avec un token d'authentification
-When l'utilisateur demande la liste des competences pour son profil
-Then il récupere une liste de competences correspondant a son profil
-
-Given Soit un utilisateur de FuSIIon avec un token d'authentification
 When l'utilisateur crée une nouvelle competence "Docker"
 Then il récupere un code retour "200 OK"
 
@@ -140,9 +136,12 @@ When l'utilisateur associe la competence "Docker" à son utilisateur
 Then il récupere un code retour "200 OK"
 
 Given Soit un utilisateur de FuSIIon avec un token d'authentification
+When l'utilisateur demande la liste des competences pour son profil
+Then il récupere une liste de competences correspondant a son profil
+
+Given Soit un utilisateur de FuSIIon avec un token d'authentification
 When l'utilisateur demande la liste des clients
 Then il récupere une liste de clients
-
 ```
 
 #### Définition du set-up du tir
