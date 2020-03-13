@@ -3,4 +3,4 @@ description: Codelab Chaos - Devoxx 2020
 show_downloads: true
 theme: jekyll-theme-cayman
 include:
-    - assets
+  - assets
