@@ -27,7 +27,7 @@ spec:
     spec:
       containers:
       - name: fusiion-front
-        image: fusiion/sii-codelab-chaos-front
+        image: fusiion/sii-codelab-chaos-front:latest
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 80

@@ -1,7 +1,7 @@
 version: '2.0'
 services:
   mongodb:
-    image: bitnami/mongodb:3.6.6
+    image: fusiion/bitnami-mongodb:latest
     ports:
      - 27017:27017
     container_name: "mongodb"
@@ -13,7 +13,7 @@ services:
 
 ##NEO4J
   neo4j:
-    image: neo4j:3.1
+    image: fusiion/neo4j-docker:latest
     ports:
      - 17474:7474
      - 17687:7687
@@ -29,7 +29,7 @@ services:
      
 ## RABBITMQ    
   rabbitmq:
-    image: rabbitmq:management
+    image: fusiion/rabbitmq:latest
     container_name: "rabbitmq"
     environment:
      - RABBITMQ_DEFAULT_USER=user

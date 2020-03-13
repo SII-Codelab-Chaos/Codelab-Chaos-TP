@@ -9,10 +9,34 @@
 
 > Pour toute la durée du CodeLab, placez-vous dans un dossier de travail (idéalement à l'abri de votre antivirus). Idéalement, le repository Maven est également à l'abri de votre antivirus
 
+## Configuration
+
+* Maven - ajout mirror dans les settings.xml
+```
+  <mirrors>
+    <mirror>
+      <id>artifactory</id>
+      <mirrorOf>*</mirrorOf>
+      <name>Artifactory</name>
+      <url>http://192.168.0.11:8081/artifactory/libs-release-local</url>
+    </mirror> --> 
+  </mirrors>
+```
+
+* Docker - ajout mirror via l'interface ou directement dans le fichier .../docker/daemon.json
+```
+{
+  "registry-mirrors": ["http://192.168.0.11:5000"],
+  "insecure-registries": ["http://192.168.0.11:5000"],
+  "debug": true,
+  "experimental": false
+}
+```
+
 ## Récupérer les sources des TP
 
 ```shell
-git clone https://github.com/SII-Codelab-Chaos/Codelab-Chaos-TP.git
+http://192.168.0.11/sources
 ```
 
 ## Récupérer les images docker (utiles à partir du TP2) et les dépendances Maven des TP 1 et 2

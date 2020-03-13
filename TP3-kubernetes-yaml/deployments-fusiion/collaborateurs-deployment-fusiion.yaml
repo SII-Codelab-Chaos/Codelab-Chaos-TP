@@ -27,7 +27,7 @@ spec:
     spec:
       containers:
       - name: fusiion-gestion-collaborateurs
-        image: fusiion/sii-codelab-chaos-gestion-collaborateurs
+        image: fusiion/sii-codelab-chaos-gestion-collaborateurs:latest
         imagePullPolicy: IfNotPresent
         env:
           - name: SPRING_DATA_MONGODB_PASSWORD

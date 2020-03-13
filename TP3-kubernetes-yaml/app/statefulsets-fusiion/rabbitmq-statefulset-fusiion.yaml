@@ -36,7 +36,7 @@ spec:
       terminationGracePeriodSeconds: 10
       containers:
        - name: rabbitmq
-         image: rabbitmq:management
+         image: fusiion/rabbitmq:latest
          resources:
               limits:
                 memory: 768Mi

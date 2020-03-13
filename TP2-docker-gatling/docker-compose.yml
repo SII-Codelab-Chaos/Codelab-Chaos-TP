@@ -7,7 +7,7 @@ networks:
 
 services:
   competences:
-    image: fusiion/sii-codelab-chaos-gestion-competences
+    image: fusiion/sii-codelab-chaos-gestion-competences:latest
     container_name: "fusiion-gestion-competences"
     environment:
      - SPRING_DATA_NEO4J_USERNAME=neo4j
@@ -27,7 +27,7 @@ services:
      - competence
 
   collaborateurs:
-    image: fusiion/sii-codelab-chaos-gestion-collaborateurs
+    image: fusiion/sii-codelab-chaos-gestion-collaborateurs:latest
     container_name: "fusiion-gestion-collaborateurs"
     environment:
      - SPRING_DATA_MONGODB_DATABASE=Collaborateurs
@@ -69,7 +69,7 @@ services:
      - authentification
 
   clients:
-    image: fusiion/sii-codelab-chaos-gestion-clients
+    image: fusiion/sii-codelab-chaos-gestion-clients:latest
     container_name: "fusiion-gestion-clients"
     environment:
      - SPRING_DATA_NEO4J_USERNAME=neo4j

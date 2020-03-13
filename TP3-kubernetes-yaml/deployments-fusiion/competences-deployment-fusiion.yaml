@@ -27,7 +27,7 @@ spec:
     spec:
       containers:
       - name: fusiion-gestion-competences
-        image: fusiion/sii-codelab-chaos-gestion-competences
+        image: fusiion/sii-codelab-chaos-gestion-competences:latest
         imagePullPolicy: IfNotPresent
         env:
           - name: SPRING_DATA_NEO4J_PASSWORD

@@ -35,7 +35,7 @@ spec:
     spec:
       containers:
        - name: neo4j
-         image: "neo4j:3.1.0"
+         image: fusiion/neo4j-kube:latest
          imagePullPolicy: "IfNotPresent"
          resources:
              limits:

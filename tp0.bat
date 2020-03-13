@@ -14,6 +14,8 @@ echo -----------------------------------------------------------
 
 cd ..
 
+docker pull fusiion/chaoskube:latest
+
 docker pull fusiion/sii-codelab-chaos-gestion-competences:latest
 
 docker pull fusiion/sii-codelab-chaos-gestion-collaborateurs:latest
@@ -22,19 +24,19 @@ docker pull fusiion/sii-codelab-chaos-gestion-clients:latest
 
 docker pull fusiion/sii-codelab-chaos-authentification:latest
 
+docker pull fusiion/rabbitmq:latest
+
+docker pull fusiion/mongo:latest
+
 docker pull fusiion/sii-codelab-chaos-front:latest
 
-docker pull bitnami/mongodb:3.6.6
+docker pull fusiion/neo4j-docker:latest
 
-docker pull mongo:3.4
+docker pull fusiion/neo4j-kube:latest
 
-docker pull neo4j:3.1
+docker pull fusiion/bitnami-mongodb:latest
 
-docker pull neo4j:3.1.0
-
-docker pull rabbitmq:management
-
-docker pull quay.io/kubernetes-ingress-controller/nginx-ingress-controller:0.9.0
+docker pull fusiion/nginx-ingress-controller:latest
 
 echo -----------------------------------------------------------
 echo Toutes les images docker ont été récupérées : OK

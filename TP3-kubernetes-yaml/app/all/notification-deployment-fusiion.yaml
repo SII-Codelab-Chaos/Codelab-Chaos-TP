@@ -27,7 +27,7 @@ spec:
     spec:
       containers:
       - name: fusiion-notification
-        image: fusiion/sii-codelab-chaos-notification
+        image: fusiion/sii-codelab-chaos-notification:latest
         imagePullPolicy: IfNotPresent
         env:  
           - name: SPRING_DATA_MONGODB_PASSWORD

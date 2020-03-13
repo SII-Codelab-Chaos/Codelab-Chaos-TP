@@ -27,7 +27,7 @@ spec:
     spec:
       containers:
       - name: fusiion-gestion-clients
-        image: fusiion/sii-codelab-chaos-gestion-clients
+        image: fusiion/sii-codelab-chaos-gestion-clients:latest
         imagePullPolicy: IfNotPresent
         env:
           - name: SPRING_DATA_NEO4J_PASSWORD

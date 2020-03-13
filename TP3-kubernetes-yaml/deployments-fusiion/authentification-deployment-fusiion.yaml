@@ -27,7 +27,7 @@ spec:
     spec:
       containers:
       - name: fusiion-authentification
-        image: fusiion/sii-codelab-chaos-authentification
+        image: fusiion/sii-codelab-chaos-authentification:latest
         imagePullPolicy: IfNotPresent
         env:
           - name: SPRING_DATA_MONGODB_PASSWORD
