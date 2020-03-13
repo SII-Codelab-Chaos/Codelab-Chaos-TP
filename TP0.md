@@ -63,13 +63,15 @@ docker images
 
 Vérifier la présence des 10 images docker suivantes :
 
+* fusiion/chaoskube:latest
 * fusiion/sii-codelab-chaos-gestion-competences:latest
 * fusiion/sii-codelab-chaos-gestion-collaborateurs:latest
 * fusiion/sii-codelab-chaos-gestion-clients:latest
 * fusiion/sii-codelab-chaos-authentification:latest
-* bitnami/mongodb:3.6.6
-* mongo:3.4
-* neo4j:3.1
-* neo4j:3.1.0
-* rabbitmq:management
-* quay.io/kubernetes-ingress-controller/nginx-ingress-controller:0.9.0
+* fusiion/rabbitmq:latest
+* fusiion/mongo:latest
+* fusiion/sii-codelab-chaos-front:latest
+* fusiion/neo4j-docker:latest
+* fusiion/neo4j-kube:latest
+* fusiion/bitnami-mongodb:latest
+* fusiion/nginx-ingress-controller:latest
