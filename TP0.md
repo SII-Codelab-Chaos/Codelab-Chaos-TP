@@ -24,7 +24,6 @@
 ```
 
 * Docker - ajout mirror via l'interface ou directement dans le fichier .../docker/daemon.json
-![docker configuration](/docker_conf.PNG)
 ```
 {
   "registry-mirrors": ["http://192.168.0.11:5000"],
