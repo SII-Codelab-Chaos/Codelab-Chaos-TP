@@ -19,7 +19,7 @@
       <mirrorOf>*</mirrorOf>
       <name>Artifactory</name>
       <url>http://192.168.0.11:8081/artifactory/libs-release-local</url>
-    </mirror> --> 
+    </mirror>
   </mirrors>
 ```
 
