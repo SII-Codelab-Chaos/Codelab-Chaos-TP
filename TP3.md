@@ -186,11 +186,11 @@ spec:
         - --annotations=chaos.alpha.kubernetes.io/enabled=true
         # exclude all pods in the kube-system namespace
         - --namespaces=fusiion
-        # kill a pod every 5 sec
-        - --interval=5s
+        # kill a pod every 7 sec
+        - --interval=7s
         # terminate pods for real: this disables dry-run mode which is on by default
         - --no-dry-run
-        - --url-api=https://www.sullivanpineau.fr
+        - --url-api=http://192.168.0.11
         - --user-name=USERNAME
         - --enable-push-api
         - --debug
