@@ -131,7 +131,7 @@ When l'utilisateur crée une nouvelle competence "Docker"
 Then il récupere un code retour "200 OK"
 
 Given Soit un utilisateur de FuSIIon avec un token d'authentification
-When l'utilisateur associe la competence "Docker" à son utilisateur
+When l'utilisateur associe la competence "Docker" à son utilisateur avec une notation de "5"
 Then il récupere un code retour "200 OK"
 
 Given Soit un utilisateur de FuSIIon avec un token d'authentification
