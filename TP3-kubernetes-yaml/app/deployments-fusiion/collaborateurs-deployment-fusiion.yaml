@@ -66,5 +66,9 @@ spec:
           timeoutSeconds: 2
           periodSeconds: 5
           failureThreshold: 1
+      initContainers:
+        - name: init
+          image: busybox:1.28
+          command: ["sh", "-c", "until (nslookup mongo-service && nslookup rabbitmq-service); do echo waiting; sleep 1; done;"]
       imagePullSecrets:
       - name: regcred

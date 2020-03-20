@@ -31,3 +31,7 @@ spec:
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 80
+      initContainers:
+        - name: init
+          image: busybox:1.28
+          command: ["sh", "-c", "until (nslookup fusiion-authentification-service && nslookup fusiion-gestion-clients-service && nslookup fusiion-gestion-competences-service && nslookup fusiion-gestion-collaborateurs-service && nslookup fusiion-notification-service && nslookup fusiion-statistiques-service && nslookup fusiion-gaming-service); do echo waiting; sleep 1; done;"]

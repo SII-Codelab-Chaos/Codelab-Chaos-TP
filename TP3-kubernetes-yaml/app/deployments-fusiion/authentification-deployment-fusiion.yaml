@@ -1,17 +1,17 @@
 apiVersion: apps/v1beta2
 kind: Deployment
 metadata:
-  name: fusiion-gestion-competences
+  name: fusiion-authentification
   namespace: fusiion
   labels:
     app: fusiion
-    name: fusiion-gestion-competences
+    name: fusiion-authentification
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: fusiion
-      name: fusiion-gestion-competences
+      name: fusiion-authentification
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -23,23 +23,23 @@ spec:
     metadata:
       labels:
         app: fusiion
-        name: fusiion-gestion-competences
+        name: fusiion-authentification
     spec:
       containers:
-      - name: fusiion-gestion-competences
-        image: fusiion/sii-codelab-chaos-gestion-competences:latest
+      - name: fusiion-authentification
+        image: fusiion/sii-codelab-chaos-authentification:latest
         imagePullPolicy: IfNotPresent
         env:
-          - name: SPRING_DATA_NEO4J_PASSWORD
+          - name: SPRING_DATA_MONGODB_PASSWORD
             valueFrom:
               secretKeyRef:
-                name: neo4j-secret
-                key: neo4j-password
-          - name: SPRING_DATA_NEO4J_USERNAME
+                name: mongodb-secret
+                key: mongodb-password
+          - name: SPRING_DATA_MONGODB_USERNAME
             valueFrom:
               secretKeyRef:
-                name: neo4j-secret
-                key: neo4j-username
+                name: mongodb-secret
+                key: mongodb-username
           - name: SPRING_RABBITMQ_PASSWORD
             valueFrom:
               secretKeyRef:
@@ -51,10 +51,12 @@ spec:
                 name: rabbitmq-secret
                 key: rabbitmq-username
         args: ["--server.port=8080"
-                ,"--spring.data.neo4j.uri=bolt://neo4j-core-0.neo4j-service"
+                ,"--sii.fusiion.url=10.10.192.33/modifiermdp/"
+                ,"--spring.data.mongodb.database=Utilisateurs"
+                ,"--spring.data.mongodb.uri=mongodb://mongo-0.mongo-service:27017/FUSIION_FUSIION-AUTHENTIFICATION"
                 ,"--spring.rabbitmq.host=rabbitmq-0.rabbitmq-service"
                 ,"--spring.rabbitmq.port=5672"
-                ]
+              ]
         ports:
         - containerPort: 8080
         readinessProbe:
@@ -65,5 +67,9 @@ spec:
           timeoutSeconds: 2
           periodSeconds: 5
           failureThreshold: 1
+      initContainers:
+        - name: init
+          image: busybox:1.28
+          command: ["sh", "-c", "until (nslookup mongo-service && nslookup rabbitmq-service); do echo waiting; sleep 1; done;"]
       imagePullSecrets:
-       - name: regcred
+      - name: regcred

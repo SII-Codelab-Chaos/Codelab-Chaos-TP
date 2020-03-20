@@ -1,0 +1,24 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: fusiion
+resources:
+- fusiion-namespace.yaml
+- fusiion-rbac.yaml 
+- default/fusiion-default-resources.yaml
+- default/fusiion-ingress-rules.yaml
+- default/fusiion-ingress.yaml
+- default/fusiion-service.yaml
+- secrets-config/mongodb-secret.yaml
+- secrets-config/neo4j-secret.yaml
+- secrets-config/rabbitmq-secret.yaml
+- statefulsets-fusiion/mongo-statefulset-fusiion.yaml
+- statefulsets-fusiion/neo4j-statefulset-fusiion.yaml
+- statefulsets-fusiion/rabbitmq-statefulset-fusiion.yaml
+- deployments-fusiion/authentification-deployment-fusiion.yaml
+- deployments-fusiion/clients-deployment-fusiion.yaml
+- deployments-fusiion/collaborateurs-deployment-fusiion.yaml
+- deployments-fusiion/competences-deployment-fusiion.yaml
+- all/front-deployment-fusiion.yaml
+- all/gaming-deployment-fusiion.yaml
+- all/notification-deployment-fusiion.yaml
+- all/statistiques-deployment-fusiion.yaml

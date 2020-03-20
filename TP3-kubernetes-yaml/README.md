@@ -1,7 +1,7 @@
 * [ ] Step 1 : launch kubernetes
 * [ ] Step 2 :
 ```sh
-$ ./run.sh
+$ kubectl apply -k .
 ```
 
 * [ ] Step 3 : 
@@ -23,16 +23,12 @@ $ ./kubebox
 * [ ] Step 4 :
 create pods with commands :
 ```sh
-$ kubectl create -f 'app-fusiion\Deployments-fusiion\authentification-deployment-fusiion.yaml'
-$ kubectl create -f 'app-fusiion\Deployments-fusiion\client-deployment-fusiion.yaml'
-$ kubectl create -f 'app-fusiion\Deployments-fusiion\collaborateurs-deployment-fusiion.yaml'
-$ kubectl create -f 'app-fusiion\Deployments-fusiion\competences-deployment-fusiion.yaml'
-$ kubectl create -f 'app-fusiion\Deployments-fusiion\front-deployment-fusiion.yaml'
-$ kubectl create -f 'app-fusiion\Deployments-fusiion\gaming-deployment-fusiion.yaml'
-$ kubectl create -f 'app-fusiion\Deployments-fusiion\notification-deployment-fusiion.yaml'
-$ kubectl create -f 'app-fusiion\Deployments-fusiion\statistiques-deployment-fusiion.yaml'
+$ kubectl create -f 'app\deployments-fusiion\authentification-deployment-fusiion.yaml'
+$ kubectl create -f 'app\deployments-fusiion\client-deployment-fusiion.yaml'
+$ kubectl create -f 'app\deployments-fusiion\collaborateurs-deployment-fusiion.yaml'
+$ kubectl create -f 'app\deployments-fusiion\competences-deployment-fusiion.yaml'
 ```
 OR 
 ```sh
-$ kubectl create -f 'app-fusiion\Deployments-fusiion\'
+$ kubectl create -f 'app\deployments-fusiion\'
 ```

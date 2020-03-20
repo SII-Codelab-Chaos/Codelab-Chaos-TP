@@ -24,16 +24,8 @@ cd TP3-kubernetes-yaml
 Lancer nos différents applicatifs  et nos bases de données en local.
 
 ```shell
-$ ./run.sh
-Lancement du script run.sh
-1/6 - create namespace Done
-2/6 - create rbac Done
-3/6 - create secrets Done
-4/6 - create statefulsets Done
-5/6 - create default Done
-6/6 - deployments Done
-ALL DONE
-Context "docker-desktop" modified.
+$ kubectl config set-context --current --namespace=fusiion
+$ kubectl apply -k .
 NAME                                              READY   STATUS              RESTARTS   AGE
 fusiion-authentification-7c94d57644-dfcn4         0/1     Pending             0          1s
 fusiion-authentification-7c94d57644-lxjn5         0/1     ContainerCreating   0          1s
@@ -56,7 +48,7 @@ fusiion-gestion-competences-6b6df9dc4-6mjwg       0/1     Pending             0 
 Configurer les variables d'environnement dans les fichiers de déploiement kubernetes pour chaque service : Compétences, Collaborateur, Authentification et Clients
 
 ```shell
-    codelab-chaos\TP3-kubernetes-yaml\deployments-fusiion\authentification-deployment-fusiion.yaml
+    codelab-chaos\TP3-kubernetes-yaml\app\deployments-fusiion\authentification-deployment-fusiion.yaml
         env:
           - name: SPRING_PROFILES_ACTIVE
             value: chaos-monkey
@@ -71,8 +63,7 @@ Configurer les variables d'environnement dans les fichiers de déploiement kuber
 Relancer l'application avec les nouvelles propriétés
 
 ```shell
-    ./delete.sh
-    ./run.sh
+$ kubectl replace -f app/deployments-fusiion/
 ```
 
 ## Kubebox
@@ -159,8 +150,7 @@ spec:
 Relancer l'application avec ces nouvelles annotations.
 
 ```shell
-    ./delete.sh
-    ./run.sh
+$ kubectl replace -f app/deployments-fusiion/
 ```
 
 #### 3) Exécution de ChaosMonkey
@@ -239,8 +229,7 @@ Configurer le nombre de replica de chaque service dans les fichiers de déploiem
 Relancer l'application avec les nouvelles propriétés
 
 ```shell
-    ./delete.sh
-    ./run.sh
+$ kubectl replace -f app/deployments-fusiion/
 ```
 
 > 🐵  Il peut être intéressant d'identifier les services "critiques", et de leurs allouer plus de ressources. Dans notre cas, le service authentification est un "Single Point of Failure". N'hésitez pas à lui allouer un replica supplémentaire.
@@ -268,5 +257,5 @@ Please open the following file: ...\Codelab-Chaos-TP\TP3-kubernetes\target\gatli
 > 🐵 N'oubliez pas de stopper votre application en local à la fin de ce tp
 
 ```shell
-./delete.sh
+$ kubectl delete -k .
 ```

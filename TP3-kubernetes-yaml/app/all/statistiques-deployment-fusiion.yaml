@@ -58,5 +58,9 @@ spec:
                 ]
         ports:
         - containerPort: 8080
+      initContainers:
+        - name: init
+          image: busybox:1.28
+          command: ["sh", "-c", "until (nslookup mongo-service && nslookup rabbitmq-service); do echo waiting; sleep 1; done;"]
       imagePullSecrets:
       - name: regcred
