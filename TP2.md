@@ -108,7 +108,7 @@ Scenario: Connection a FuSIIon puis parcours sur l'application
 
 Given Soit un utilisateur de FuSIIon
 And un username "pgaultier@sii.fr"
-And un password "password
+And un password "password"
 When l'utilisateur se connecte via la mire d'authentification de FuSIIon avec ses identifiants
 Then il récupere un token d'authentification JWT
 
