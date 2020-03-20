@@ -145,7 +145,9 @@ Then il récupere une liste de clients
 
 #### Définition du set-up du tir
 
-Completer le setup du tir à l'aide des informations suivantes :
+Completer le setup du tir à l'aide des informations suivantes et de la documentation de Gatling:
+
+[https://gatling.io/docs/current/general/simulation_setup](https://gatling.io/docs/current/general/simulation_setup)
 
 ```shell
 # Pour ce TP2, nous allons faire des tirs de charge de 3 minutes, soit 180 secondes.
@@ -154,10 +156,10 @@ Completer le setup du tir à l'aide des informations suivantes :
 
   setUp(
     scn.inject(
-      rampUsers({{nb_User}}) during ({{nb_Seconde}} seconds))).protocols(httpProtocol)
+      rampUsers(nb_User) during (nb_Seconde seconds))).protocols(httpProtocol)
     .assertions(
-      global.successfulRequests.percent.gt({{percentage_Successful_Resquest}}),
-      details("authentication").failedRequests.percent.lt({{percentage_Failed_Request}})
+      global.successfulRequests.percent.gt(percentage_Successful_Resquest),
+      details("authentication").failedRequests.percent.lt(percentage_Failed_Request)
     )
 ```
 
