@@ -51,8 +51,11 @@ e434a52c04b3        fusiion/bitnami-mongodb:latest                            "/
 
 Codelab-Chaos-TP/TP2-docker-gatling/src/test/scala/fusiion/BasicSimulation.scala
 
-#### Définition du protocole de communication
+Pour cela nous allons proceder étape par étape, et nous aider de la documentation de Gatling :
 
+[https://gatling.io/docs/current/general/simulation_structure](https://gatling.io/docs/current/general/simulation_structure)
+
+#### Définition du protocole de communication
 
 ```shell
   val httpProtocol = http
@@ -65,6 +68,10 @@ Codelab-Chaos-TP/TP2-docker-gatling/src/test/scala/fusiion/BasicSimulation.scala
 ```
 
 #### Définition du scénario fonctionnel
+
+Construire le scénario fonctionnel que nous allons utiliser pour ce tir de charge à l'aide des informations suivante et de la documentaion de Gatling
+
+[https://gatling.io/docs/current/general/scenario](https://gatling.io/docs/current/general/scenario)
 
 Ajouter le début du scénario avec un premier appel au service d'authentification
 
