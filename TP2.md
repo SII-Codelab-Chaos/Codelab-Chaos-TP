@@ -151,7 +151,6 @@ Completer le setup du tir à l'aide des informations suivantes :
 # Pour ce TP2, nous allons faire des tirs de charge de 3 minutes, soit 180 secondes.
 # FuSIIon est à destination des collaborateurs de SII Atlantique, soit environ 300 personnes.
 # Pour que ce tir soit validant, nous avons besoin que 80% des requetes soit en succès et moins de 5% d'erreur sur le service d'authentification.
-# Vous pouvez rajouter d'autres assertions, par exemple sur le temps de reponses, ou le nombre de requetes par secondes : [https://gatling.io/docs/current/general/assertions](https://gatling.io/docs/current/general/assertions)
 
   setUp(
     scn.inject(
@@ -161,6 +160,8 @@ Completer le setup du tir à l'aide des informations suivantes :
       details("authentication").failedRequests.percent.lt({{percentage_Failed_Request}})
     )
 ```
+
+> **Note :** Si il vous reste du temps à la fin de ce TP, vous pouvez rajouter d'autres assertions, par exemple sur le temps de reponses ou le nombre de requetes par secondes : [https://gatling.io/docs/current/general/assertions](https://gatling.io/docs/current/general/assertions)
 
 ### Lancer un tir de charge
 
