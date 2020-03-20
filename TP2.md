@@ -163,7 +163,7 @@ Completer le setup du tir à l'aide des informations suivantes et de la document
     )
 ```
 
-> **Note :** Si il vous reste du temps à la fin de ce TP, vous pouvez rajouter d'autres assertions, par exemple sur le temps de reponses ou le nombre de requetes par secondes : [https://gatling.io/docs/current/general/assertions](https://gatling.io/docs/current/general/assertions)
+> 🐵 Si il vous reste du temps à la fin de ce TP, vous pouvez rajouter d'autres assertions, par exemple sur le temps de reponses ou le nombre de requetes par secondes : [https://gatling.io/docs/current/general/assertions](https://gatling.io/docs/current/general/assertions)
 
 ### Lancer un tir de charge
 
@@ -173,7 +173,7 @@ Lancer le tir
 mvn -Dgatling.compilerJvmArgs="-Xmx256m" gatling:test
 ```
 
-> **Note :** Vous pouvez suivre l'évolution des résultats du tir de charge en console pendant toute la durée du tir
+> 🐵 Vous pouvez suivre l'évolution des résultats du tir de charge en console pendant toute la durée du tir
 
 Ouvrir le rapport du tir de charge 
 Ce rapport est disponible via le lien en en console à la fin de l'éxecution du goal maven
@@ -234,7 +234,7 @@ Lancer le tir
 mvn -Dgatling.compilerJvmArgs="-Xmx256m" gatling:test
 ```
 
-> **Note :** Pendant l'éxecution de ce tir ( 3 minutes), n'hesitez pas à poser des questions à vos speakers !
+> 🐵 Pendant l'éxecution de ce tir ( 3 minutes), n'hesitez pas à poser des questions à vos speakers !
 
 Ouvrir le rapport du tir de charge 
 
