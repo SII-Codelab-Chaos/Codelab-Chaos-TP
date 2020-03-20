@@ -70,7 +70,7 @@ Ajouter le début du scénario avec un premier appel au service d'authentificati
 
 ```shell
   val scn = scenario("BasicSimulation")
-    .exec(http("authentication") // Nom de l'appel dans le rapport gatling
+    .exec(http("authentication") // Nom de l\'appel dans le rapport gatling
       .post(":8080/login") // appel HTTP POST sur la ressource REST /gestionAuthentification/login
       .body(StringBody("{\"username\" : \"pgaultier\", \"password\" : \"password\"}")) // body du POST avec user/password
       .check(header("Authorization").saveAs("token")) // stockage du token JWT dans une variable token
