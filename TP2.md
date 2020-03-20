@@ -33,18 +33,15 @@ Vérifier que les bases de données et les micro-services sont bien démarrés :
 ```shell
 docker container ps
 
-    CONTAINER ID        IMAGE                                     COMMAND                  CREATED             STATUS              PORTS                                                                                       NAMES
-    217a92ed643b        fusiion/fusiion-gestion-competences       "java -jar /opt/fusi…"   20 minutes ago      Up 20 minutes       8080/tcp, 0.0.0.0:8081->8081/tcp                                                            fusiion-gestion-competences
-    fc01f10e5a8e        fusiion/fusiion-gestion-clients           "java -jar /opt/fusi…"   20 minutes ago      Up 20 minutes       8080/tcp, 0.0.0.0:8084->8084/tcp                                                            fusiion-gestion-clients
-    536f1df87d62        fusiion/fusiion-notification              "java -jar /opt/fusi…"   20 minutes ago      Up 20 minutes       8080/tcp, 0.0.0.0:8090->8090/tcp                                                            fusiion-notification
-    2da72da3f284        fusiion/fusiion-statistiques              "java -jar /opt/fusi…"   20 minutes ago      Up 20 minutes       8080/tcp, 0.0.0.0:8082->8082/tcp                                                            fusiion-statistiques
-    3dd4a601763f        fusiion/fusiion-gaming                    "java -jar /opt/fusi…"   20 minutes ago      Up 20 minutes       8080/tcp, 0.0.0.0:8086->8086/tcp                                                            fusiion-gaming
-    67fb696c7427        fusiion/fusiion-gestion-collaborateurs    "java -jar /opt/fusi…"   20 minutes ago      Up 20 minutes       8080/tcp, 0.0.0.0:8083->8083/tcp                                                            fusiion-gestion-collaborateurs
-    f561a33e9028        fusiion/fusiion-authentification:latest   "java -XX:+UnlockExp…"   20 minutes ago      Up 20 minutes       0.0.0.0:8080->8080/tcp                                                                      fusiion-authentification
-    6a08656082ff        rabbitmq:management                       "docker-entrypoint.s…"   3 hours ago         Up 36 minutes       4369/tcp, 5671/tcp, 15671/tcp, 25672/tcp, 0.0.0.0:8088->5672/tcp, 0.0.0.0:8087->15672/tcp   rabbitmq
-    c6e0577926c7        bitnami/mongodb:3.6.6                     "/app-entrypoint.sh …"   3 hours ago         Up 36 minutes       0.0.0.0:27017->27017/tcp                                                                    mongodb
-    dcd1055b23da        neo4j:3.1                                 "/sbin/tini -g -- /d…"   3 hours ago         Up 36 minutes       7473/tcp, 0.0.0.0:17474->7474/tcp, 0.0.0.0:17687->7687/tcp                                  neo4j
- ```
+CONTAINER ID        IMAGE                                                     COMMAND                  CREATED             STATUS              PORTS                                                                                       NAMES
+8336a1521f71        fusiion/sii-codelab-chaos-gestion-clients:latest          "java -XX:+UnlockExp…"   7 seconds ago       Up 6 seconds        8080/tcp, 0.0.0.0:8084->8084/tcp                                                            fusiion-gestion-clients
+c001854b9395        fusiion/sii-codelab-chaos-gestion-collaborateurs:latest   "java -XX:+UnlockExp…"   7 seconds ago       Up 6 seconds        8080/tcp, 0.0.0.0:8083->8083/tcp                                                            fusiion-gestion-collaborateurs
+47fbba6a4138        fusiion/sii-codelab-chaos-gestion-competences:latest      "java -XX:+UnlockExp…"   7 seconds ago       Up 6 seconds        8080/tcp, 0.0.0.0:8081->8081/tcp                                                            fusiion-gestion-competences
+bc90ce18db5b        fusiion/sii-codelab-chaos-authentification:latest         "java -XX:+UnlockExp…"   8 seconds ago       Up 7 seconds        0.0.0.0:8080->8080/tcp                                                                      fusiion-authentification
+84770180388c        fusiion/neo4j-docker:latest                               "/docker-entrypoint.…"   10 seconds ago      Up 8 seconds        7473/tcp, 0.0.0.0:17474->7474/tcp, 0.0.0.0:17687->7687/tcp                                  neo4j
+e434a52c04b3        fusiion/bitnami-mongodb:latest                            "/app-entrypoint.sh …"   10 seconds ago      Up 8 seconds        0.0.0.0:27017->27017/tcp                                                                    mongodb
+6cf87dab1620        fusiion/rabbitmq:latest                                   "docker-entrypoint.s…"   10 seconds ago      Up 8 seconds        4369/tcp, 5671/tcp, 15671/tcp, 25672/tcp, 0.0.0.0:8088->5672/tcp, 0.0.0.0:8087->15672/tcp   rabbitmq
+```
  
 ## Gatling
 
