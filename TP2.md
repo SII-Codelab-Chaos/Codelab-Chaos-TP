@@ -33,18 +33,15 @@ Vérifier que les bases de données et les micro-services sont bien démarrés :
 ```shell
 docker container ps
 
-    CONTAINER ID        IMAGE                                     COMMAND                  CREATED             STATUS              PORTS                                                                                       NAMES
-    217a92ed643b        fusiion/fusiion-gestion-competences       "java -jar /opt/fusi…"   20 minutes ago      Up 20 minutes       8080/tcp, 0.0.0.0:8081->8081/tcp                                                            fusiion-gestion-competences
-    fc01f10e5a8e        fusiion/fusiion-gestion-clients           "java -jar /opt/fusi…"   20 minutes ago      Up 20 minutes       8080/tcp, 0.0.0.0:8084->8084/tcp                                                            fusiion-gestion-clients
-    536f1df87d62        fusiion/fusiion-notification              "java -jar /opt/fusi…"   20 minutes ago      Up 20 minutes       8080/tcp, 0.0.0.0:8090->8090/tcp                                                            fusiion-notification
-    2da72da3f284        fusiion/fusiion-statistiques              "java -jar /opt/fusi…"   20 minutes ago      Up 20 minutes       8080/tcp, 0.0.0.0:8082->8082/tcp                                                            fusiion-statistiques
-    3dd4a601763f        fusiion/fusiion-gaming                    "java -jar /opt/fusi…"   20 minutes ago      Up 20 minutes       8080/tcp, 0.0.0.0:8086->8086/tcp                                                            fusiion-gaming
-    67fb696c7427        fusiion/fusiion-gestion-collaborateurs    "java -jar /opt/fusi…"   20 minutes ago      Up 20 minutes       8080/tcp, 0.0.0.0:8083->8083/tcp                                                            fusiion-gestion-collaborateurs
-    f561a33e9028        fusiion/fusiion-authentification:latest   "java -XX:+UnlockExp…"   20 minutes ago      Up 20 minutes       0.0.0.0:8080->8080/tcp                                                                      fusiion-authentification
-    6a08656082ff        rabbitmq:management                       "docker-entrypoint.s…"   3 hours ago         Up 36 minutes       4369/tcp, 5671/tcp, 15671/tcp, 25672/tcp, 0.0.0.0:8088->5672/tcp, 0.0.0.0:8087->15672/tcp   rabbitmq
-    c6e0577926c7        bitnami/mongodb:3.6.6                     "/app-entrypoint.sh …"   3 hours ago         Up 36 minutes       0.0.0.0:27017->27017/tcp                                                                    mongodb
-    dcd1055b23da        neo4j:3.1                                 "/sbin/tini -g -- /d…"   3 hours ago         Up 36 minutes       7473/tcp, 0.0.0.0:17474->7474/tcp, 0.0.0.0:17687->7687/tcp                                  neo4j
- ```
+CONTAINER ID        IMAGE                                                     COMMAND                  CREATED             STATUS              PORTS                                                                                       NAMES
+8336a1521f71        fusiion/sii-codelab-chaos-gestion-clients:latest          "java -XX:+UnlockExp…"   7 seconds ago       Up 6 seconds        8080/tcp, 0.0.0.0:8084->8084/tcp                                                            fusiion-gestion-clients
+c001854b9395        fusiion/sii-codelab-chaos-gestion-collaborateurs:latest   "java -XX:+UnlockExp…"   7 seconds ago       Up 6 seconds        8080/tcp, 0.0.0.0:8083->8083/tcp                                                            fusiion-gestion-collaborateurs
+47fbba6a4138        fusiion/sii-codelab-chaos-gestion-competences:latest      "java -XX:+UnlockExp…"   7 seconds ago       Up 6 seconds        8080/tcp, 0.0.0.0:8081->8081/tcp                                                            fusiion-gestion-competences
+bc90ce18db5b        fusiion/sii-codelab-chaos-authentification:latest         "java -XX:+UnlockExp…"   8 seconds ago       Up 7 seconds        0.0.0.0:8080->8080/tcp                                                                      fusiion-authentification
+84770180388c        fusiion/neo4j-docker:latest                               "/docker-entrypoint.…"   10 seconds ago      Up 8 seconds        7473/tcp, 0.0.0.0:17474->7474/tcp, 0.0.0.0:17687->7687/tcp                                  neo4j
+e434a52c04b3        fusiion/bitnami-mongodb:latest                            "/app-entrypoint.sh …"   10 seconds ago      Up 8 seconds        0.0.0.0:27017->27017/tcp                                                                    mongodb
+6cf87dab1620        fusiion/rabbitmq:latest                                   "docker-entrypoint.s…"   10 seconds ago      Up 8 seconds        4369/tcp, 5671/tcp, 15671/tcp, 25672/tcp, 0.0.0.0:8088->5672/tcp, 0.0.0.0:8087->15672/tcp   rabbitmq
+```
  
 ## Gatling
 
@@ -54,8 +51,11 @@ docker container ps
 
 Codelab-Chaos-TP/TP2-docker-gatling/src/test/scala/fusiion/BasicSimulation.scala
 
-#### Définition du protocole de communication
+Pour cela nous allons proceder étape par étape, et nous aider de la documentation de Gatling :
 
+[https://gatling.io/docs/current/general/simulation_structure](https://gatling.io/docs/current/general/simulation_structure)
+
+#### Définition du protocole de communication
 
 ```shell
   val httpProtocol = http
@@ -69,15 +69,20 @@ Codelab-Chaos-TP/TP2-docker-gatling/src/test/scala/fusiion/BasicSimulation.scala
 
 #### Définition du scénario fonctionnel
 
+Construire le scénario fonctionnel que nous allons utiliser pour ce tir de charge à l'aide des informations suivante et de la documentaion de Gatling
+
+[https://gatling.io/docs/current/general/scenario](https://gatling.io/docs/current/general/scenario)
+
 Ajouter le début du scénario avec un premier appel au service d'authentification
 
 ```shell
   val scn = scenario("BasicSimulation")
-    .exec(http("authentication") // Nom de l appel dans le rapport gatling
+    .exec(http("authentication") // Nom de l\'appel dans le rapport gatling
       .post(":8080/login") // appel HTTP POST sur la ressource REST /gestionAuthentification/login
       .body(StringBody("{\"username\" : \"pgaultier\", \"password\" : \"password\"}")) // body du POST avec user/password
       .check(header("Authorization").saveAs("token")) // stockage du token JWT dans une variable token
-    ).pause(2)
+    )
+    .pause(2) // pause de 2 seconde pour simuler un vrai utilisateur
 ```
 
 Ajouter un deuxième appel au scénario en récuperant la liste des collaborateurs
@@ -87,7 +92,8 @@ Ajouter un deuxième appel au scénario en récuperant la liste des collaborateu
         .get(":8083/collaborateurs/pgaultier@sii.fr")
         .header("Authorization", "${token}")
         .check(status.is(session => 200))
-    ).pause(2)
+    )
+    .pause(2)
 ```
 
 Completer la fin du scénario fonctionnel du tir de charge à l'aide de la feature suivante qui décrit le comportement attendu.
@@ -111,7 +117,7 @@ Scenario: Connection a FuSIIon puis parcours sur l'application
 
 Given Soit un utilisateur de FuSIIon
 And un username "pgaultier@sii.fr"
-And un password "password
+And un password "password"
 When l'utilisateur se connecte via la mire d'authentification de FuSIIon avec ses identifiants
 Then il récupere un token d'authentification JWT
 
@@ -132,12 +138,12 @@ When l'utilisateur crée une nouvelle competence "Docker"
 Then il récupere un code retour "200 OK"
 
 Given Soit un utilisateur de FuSIIon avec un token d'authentification
-When l'utilisateur associe la competence "Docker" à son utilisateur
+When l'utilisateur associe la competence "Docker" à son utilisateur avec une notation de "5"
 Then il récupere un code retour "200 OK"
 
 Given Soit un utilisateur de FuSIIon avec un token d'authentification
-When l'utilisateur demande la liste des competences pour son profil
-Then il récupere une liste de competences correspondant a son profil
+When l'utilisateur demande le profil d'un collaborateur avec son identifiant
+Then il récupere le collaborateur correspondant à son identifiant 
 
 Given Soit un utilisateur de FuSIIon avec un token d'authentification
 When l'utilisateur demande la liste des clients
@@ -146,22 +152,25 @@ Then il récupere une liste de clients
 
 #### Définition du set-up du tir
 
-Completer le setup du tir à l'aide des informations suivantes :
+Completer le setup du tir à l'aide des informations suivantes et de la documentation de Gatling:
+
+[https://gatling.io/docs/current/general/simulation_setup](https://gatling.io/docs/current/general/simulation_setup)
 
 ```shell
 # Pour ce TP2, nous allons faire des tirs de charge de 3 minutes, soit 180 secondes.
 # FuSIIon est à destination des collaborateurs de SII Atlantique, soit environ 300 personnes.
 # Pour que ce tir soit validant, nous avons besoin que 80% des requetes soit en succès et moins de 5% d'erreur sur le service d'authentification.
-# Vous pouvez rajouter d'autres assertions, par exemple sur le temps de reponses, ou le nombre de requetes par secondes : [https://gatling.io/docs/current/general/assertions](https://gatling.io/docs/current/general/assertions)
 
   setUp(
     scn.inject(
-      rampUsers({{nb_User}}) during ({{nb_Seconde}} seconds))).protocols(httpProtocol)
+      rampUsers(nb_User) during (nb_Seconde seconds))).protocols(httpProtocol)
     .assertions(
-      global.successfulRequests.percent.gt({{percentage_Successful_Resquest}}),
-      details("authentication").failedRequests.percent.lt({{percentage_Failed_Request}})
+      global.successfulRequests.percent.gt(percentage_Successful_Resquest),
+      details("authentication").failedRequests.percent.lt(percentage_Failed_Request)
     )
 ```
+
+> 🐵 Si il vous reste du temps à la fin de ce TP, vous pouvez rajouter d'autres assertions, par exemple sur le temps de reponses ou le nombre de requetes par secondes : [https://gatling.io/docs/current/general/assertions](https://gatling.io/docs/current/general/assertions)
 
 ### Lancer un tir de charge
 
@@ -171,7 +180,7 @@ Lancer le tir
 mvn -Dgatling.compilerJvmArgs="-Xmx256m" gatling:test
 ```
 
-> **Note :** Vous pouvez suivre l'évolution des résultats du tir de charge en console pendant toute la durée du tir
+> 🐵 Vous pouvez suivre l'évolution des résultats du tir de charge en console pendant toute la durée du tir
 
 Ouvrir le rapport du tir de charge 
 Ce rapport est disponible via le lien en en console à la fin de l'éxecution du goal maven
@@ -232,7 +241,7 @@ Lancer le tir
 mvn -Dgatling.compilerJvmArgs="-Xmx256m" gatling:test
 ```
 
-> **Note :** Pendant l'éxecution de ce tir ( 3 minutes), n'hesitez pas à poser des questions à vos speakers !
+> 🐵 Pendant l'éxecution de ce tir ( 3 minutes), n'hesitez pas à poser des questions à vos speakers !
 
 Ouvrir le rapport du tir de charge 
 

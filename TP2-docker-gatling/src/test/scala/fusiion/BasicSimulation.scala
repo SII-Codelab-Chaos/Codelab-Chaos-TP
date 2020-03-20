@@ -14,15 +14,17 @@ class BasicSimulation extends Simulation {
 
   val scn = scenario("BasicSimulation")
     .exec(http("authentication") // Nom de l'appel dans le rapport gatling
-      .post("/gestionAuthentification/login") // appel HTTP POST sur la ressource REST /gestionAuthentification/login
+      .post(":8080/login") // appel HTTP POST sur la ressource REST localhost:8080/login
       .body(StringBody("{\"username\" : \"pgaultier\", \"password\" : \"password\"}")) // body du POST avec user/password
       .check(header("Authorization").saveAs("token")) // stockage du token JWT dans une variable token
-    ).pause(2) // pause de 2 seconde pour simuler un vrai utilisateur
+    )
+    .pause(2) // pause de 2 seconde pour simuler un vrai utilisateur
     .exec(http({{Nom_Sequence}})
       .get({{Adresse_Service_Web}})
       .header("Authorization", "${token}") // reutilisation du token JWT pour s'authentifier auprès d'un autre service
       .check(status.is(session => 200)) // Test du code de retour HTTP : 200 OK
-    ).pause(2)
+    )
+    .pause(2)
 
   // Setup du tir de charge
 
