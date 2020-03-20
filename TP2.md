@@ -70,11 +70,12 @@ Ajouter le début du scénario avec un premier appel au service d'authentificati
 
 ```shell
   val scn = scenario("BasicSimulation")
-    .exec(http("authentication") // Nom de l appel dans le rapport gatling
+    .exec(http("authentication") // Nom de l'appel dans le rapport gatling
       .post(":8080/login") // appel HTTP POST sur la ressource REST /gestionAuthentification/login
       .body(StringBody("{\"username\" : \"pgaultier\", \"password\" : \"password\"}")) // body du POST avec user/password
       .check(header("Authorization").saveAs("token")) // stockage du token JWT dans une variable token
-    ).pause(2)
+    )
+    .pause(2) // pause de 2 seconde pour simuler un vrai utilisateur
 ```
 
 Ajouter un deuxième appel au scénario en récuperant la liste des collaborateurs
@@ -84,7 +85,8 @@ Ajouter un deuxième appel au scénario en récuperant la liste des collaborateu
         .get(":8083/collaborateurs/pgaultier@sii.fr")
         .header("Authorization", "${token}")
         .check(status.is(session => 200))
-    ).pause(2)
+    )
+    .pause(2)
 ```
 
 Completer la fin du scénario fonctionnel du tir de charge à l'aide de la feature suivante qui décrit le comportement attendu.
