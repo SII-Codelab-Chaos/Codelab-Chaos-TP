@@ -202,8 +202,8 @@ Configurer les variables d'environnement dans le fichier docker-compose.yml pour
         - CHAOS_MONKEY_LEVEL=10
         - CHAOS_MONKEY_KILL_APPLICATION_ACTIVE=false
         - CHAOS_MONKEY_LATENCY_ACTIVE=true
-        - CHAOS_MONKEY_LATENCY_RANGE_START=1000
-        - CHAOS_MONKEY_LATENCY_RANGE_END=10000
+        - CHAOS_MONKEY_LATENCY_RANGE_START=800
+        - CHAOS_MONKEY_LATENCY_RANGE_END=2000
 ```
 
 Relancer l'application avec les nouvelles propriétés
