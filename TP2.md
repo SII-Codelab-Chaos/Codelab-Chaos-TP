@@ -200,6 +200,7 @@ Configurer les variables d'environnement dans le fichier docker-compose.yml pour
         - SPRING_PROFILES_ACTIVE=chaos-monkey
         - CHAOS_MONKEY_ENABLED=true
         - CHAOS_MONKEY_LEVEL=10
+        - CHAOS_MONKEY_KILL_APPLICATION_ACTIVE=false
         - CHAOS_MONKEY_LATENCY_ACTIVE=true
         - CHAOS_MONKEY_LATENCY_RANGE_START=1000
         - CHAOS_MONKEY_LATENCY_RANGE_END=10000
@@ -262,6 +263,9 @@ Configurer les variables d'environnement dans le fichier docker-compose.yml pour
         - CHAOS_MONKEY_ENABLED=true
         - CHAOS_MONKEY_LEVEL=250
         - CHAOS_MONKEY_KILL_APPLICATION_ACTIVE=true
+        - CHAOS_MONKEY_LATENCY_ACTIVE=true
+        - CHAOS_MONKEY_LATENCY_RANGE_START=1000
+        - CHAOS_MONKEY_LATENCY_RANGE_END=10000
 ```
 
 Relancer l'application avec les nouvelles propriétés
