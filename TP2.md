@@ -134,10 +134,6 @@ When l'utilisateur demande le profil d'un collaborateur avec son identifiant
 Then il récupere le collaborateur correspondant à son identifiant 
 
 Given Soit un utilisateur de FuSIIon avec un token d'authentification
-When l'utilisateur demande le profil d'un collaborateur avec son identifiant
-Then il récupere le collaborateur correspondant à son identifiant 
-
-Given Soit un utilisateur de FuSIIon avec un token d'authentification
 When l'utilisateur demande la liste des clients
 Then il récupere une liste de clients
 ```
