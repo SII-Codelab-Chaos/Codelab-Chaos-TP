@@ -18,7 +18,7 @@ spec:
     name: neo4j-core
     component: core
 ---
-apiVersion: apps/v1beta1
+apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: neo4j-core
@@ -26,6 +26,9 @@ metadata:
 spec:
   serviceName: neo4j-service
   replicas: 1
+  selector:
+    matchLabels:
+      app: fusiion
   template:
     metadata:
       labels:
