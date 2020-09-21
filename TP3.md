@@ -58,6 +58,12 @@ Configurer les variables d'environnement dans les fichiers de déploiement kuber
             value: "250"
           - name: CHAOS_MONKEY_KILL_APPLICATION_ACTIVE
             value: "true"
+          - name: CHAOS_MONKEY_LATENCY_ACTIVE
+            value: "true"
+          - name: CHAOS_MONKEY_LATENCY_RANGE_START
+            value: "800"
+          - name: CHAOS_MONKEY_LATENCY_RANGE_END
+            value: "2000"
 ```
 
 Relancer l'application avec les nouvelles propriétés
