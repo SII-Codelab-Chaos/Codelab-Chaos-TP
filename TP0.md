@@ -11,7 +11,7 @@
 
 ## Configuration
 
-* Maven - ajout mirror dans les settings.xml
+* ~~Maven - ajout mirror dans les settings.xml~~
 ```
   <mirrors>
     <mirror>
@@ -23,7 +23,7 @@
   </mirrors>
 ```
 
-* Docker - ajout mirror via l'interface ou directement dans le fichier .../docker/daemon.json
+* ~~Docker - ajout mirror via l'interface ou directement dans le fichier .../docker/daemon.json~~
 ![docker_conf](docker_conf.PNG)
 ```
 {
@@ -34,7 +34,7 @@
 }
 ```
 
-## Récupérer les sources des TP
+## ~~Récupérer les sources des TP~~
 
 ```shell
 http://192.168.0.11/sources
