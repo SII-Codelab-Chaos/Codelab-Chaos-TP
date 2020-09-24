@@ -88,7 +88,7 @@ Exemple sous windows :
 ### Lancer un tir de charge
 
 Gatling offre la possibilité de pusher les métriques/données du tir directement dans un graphite afin de mutualiser les résultats et des les visualiser sur Grafana.
-Pour ce faire, nous avons mis à votre distribution un graphite afin de partager vos différents résultats, il suffit d'ajouter/modifier la configuration gatling (gatling/src/test/resources/gatling.conf) :
+~~Pour ce faire, nous avons mis à votre distribution un graphite afin de partager vos différents résultats, il suffit d'ajouter/modifier la configuration gatling (gatling/src/test/resources/gatling.conf) :~~
 
 ```
 gatling {
@@ -186,9 +186,9 @@ spec:
         - --interval=7s
         # terminate pods for real: this disables dry-run mode which is on by default
         - --no-dry-run
-        - --url-api=http://192.168.0.11
-        - --user-name=USERNAME
-        - --enable-push-api
+        # - --url-api=http://192.168.0.11
+        # - --user-name=USERNAME
+        # - --enable-push-api
         - --debug
        ...
 ```
