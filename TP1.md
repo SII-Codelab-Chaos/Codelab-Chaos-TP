@@ -22,6 +22,7 @@ Comment aurait-on pu éviter d'avoir des TU inutiles ?"
 ### Lancer les test unitaires
 
 ```shell
+mvn clean install
 mvn test
 ```
 
